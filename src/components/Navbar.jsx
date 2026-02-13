@@ -88,6 +88,10 @@ export const Navbar = () => {
                                 </a>
 
                             ))}
+
+                            <div className="flex justify-center">
+                                <ThemeToggle className="text-foreground/80 hover:text-primary transition-colors duration-300" />
+                            </div>
                         </div>
                     </div>
                 </div>
