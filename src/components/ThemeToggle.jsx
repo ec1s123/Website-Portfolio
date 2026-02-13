@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import { cn } from "../lib/utils";
 
 export const ThemeToggle = ({ className }) => {
-    const [isDarkMode, setIsDarkMode] = useState((True) => {
-        return localStorage.getItem('theme') === 'dark';
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "dark") return true;
+        if (savedTheme === "light") return false;
+
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
     });
 
     useEffect(() => {
@@ -23,9 +28,12 @@ export const ThemeToggle = ({ className }) => {
     };
 
     return ( 
-        <button onClick = {toggleTheme} 
+        <button
+        onClick={toggleTheme}
+        aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+        aria-pressed={isDarkMode}
         className = {cn("p-2 rounded-full transition-colors",
-            "focus:outline-hidden"
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             , className
         )}> 
             {" "}
