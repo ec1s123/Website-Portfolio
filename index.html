@@ -4,16 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>
-      (function () {
-        try {
-          var savedTheme = localStorage.getItem('theme');
-          if (savedTheme === 'dark' || !savedTheme) {
-            document.documentElement.classList.add('dark');
-          }
-        } catch (_) {}
-      })();
-    </script>
+    <script src="/theme-init.js"></script>
     <title>Adam Eccles | Software Engineer</title>
   </head>
   <body>
