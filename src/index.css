@@ -76,6 +76,9 @@
     --primary-foreground: 210 40% 98%;
 
     --border: 214 32% 91%;
+    --star-color: 250 45% 44%;
+    --star-glow: 250 50% 55%;
+    --star-strength: 0.8;
   }
   :root.dark {
     --background: 222 47% 4%;
@@ -87,6 +90,9 @@
     --primary-foreground: 213 31% 91%;
 
     --border: 217 33% 20%;
+    --star-color: 230 70% 92%;
+    --star-glow: 250 65% 75%;
+    --star-strength: 1;
   }
   * {
     @apply border-border;
@@ -150,13 +156,56 @@
 }
 
 @utility star {
-  @apply absolute rounded-full bg-white;
-  box-shadow: 0 0 10px 2px rgba(255,255,255, 0.4);
+  @apply absolute rounded-full;
+  background: hsl(var(--star-color));
+  opacity: calc(var(--star-opacity) * var(--star-strength));
+  box-shadow: 0 0 4px hsl(var(--star-glow) / 0.25);
+  transition: background-color 300ms, box-shadow 300ms;
 }
 
 @utility meteor {
-  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
-  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.43);
+  @apply absolute rounded-full;
+  width: 90px;
+  height: 1.5px;
+  opacity: 0;
+  background: linear-gradient(to right, hsl(var(--star-color)), transparent);
+  animation: starfield-meteor 12s linear infinite;
+}
+
+.star-twinkle {
+  animation: starfield-twinkle 6s ease-in-out infinite;
+}
+
+.star-prominent::before,
+.star-prominent::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 1px;
+  background: hsl(var(--star-color) / 0.6);
+  transform: translate(-50%, -50%);
+}
+
+.star-prominent::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+@keyframes starfield-twinkle {
+  0%, 100% { opacity: calc(var(--star-opacity) * var(--star-strength)); }
+  50% { opacity: calc(var(--star-opacity) * var(--star-strength) * 0.55); }
+}
+
+@keyframes starfield-meteor {
+  0%, 76% { opacity: 0; transform: rotate(-35deg) translateX(0); }
+  78% { opacity: 0.55; }
+  92%, 100% { opacity: 0; transform: rotate(-35deg) translateX(-450px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star-twinkle { animation: none; }
+  .starfield .meteor { display: none; }
 }
 
 #root{
@@ -166,4 +215,3 @@
   text-align: center;
 
 }
-

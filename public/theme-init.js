@@ -4,7 +4,7 @@
     if (savedTheme === "dark" || !savedTheme) {
       document.documentElement.classList.add("dark");
     }
-  } catch (_) {
+  } catch {
     // Ignore storage access errors and continue with default theme.
   }
 })();

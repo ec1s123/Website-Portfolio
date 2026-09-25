@@ -1,64 +1,39 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
-
-const projects = [
-    {
-        id: 1,
-        title: "Siamese Neural Network for one shot image recognition",
-        description: "Developed a Siamese Neural Network using TensorFlow and Keras to perform one-shot image recognition tasks. The model was trained on a custom dataset and achieved high accuracy in identifying unseen classes with minimal examples.",
-        image: "/projects/siamese_nn.png",
-        tags: ["TensorFlow", "Keras", "Python", "Machine Learning"],
-        demoUrl: "https://www.linkedin.com/posts/adam-eccles-616b1427b_for-my-project-this-week-i-decided-to-get-activity-7348786596818653185-o4ii?utm_source=share&utm_medium=member_desktop&rcm=ACoAAERUo3IBBgG_yuKhKGT9EJf9cg_sIfe4exY",
-        githubLink: "https://github.com/ec1s123/Siamese-Neural-Network-for-Real-Time-Facial-Recognition",
-    },
-        {
-        id: 2 ,
-        title: "Phishing Website Detection using Machine Learning",
-        description: "Developed a machine learning model to detect phishing websites using features extracted from URL structure, domain information, and HTML content. The model was trained on a dataset of known phishing and legitimate websites.",
-        image: "/projects/phishing_detection.png",
-        tags: ["TensorFlow", "Scikit-learn", "Python", "pandas", "numpy", "matplotlib", "Machine Learning"],
-        demoUrl: "https://www.linkedin.com/posts/adam-eccles-616b1427b_cybersecurity-machinelearning-activity-7328086633109417984-RcaE?utm_source=share&utm_medium=member_desktop&rcm=ACoAAERUo3IBBgG_yuKhKGT9EJf9cg_sIfe4exY",
-        githubLink: "https://github.com/ec1s123/phishing-detection-ml",
-    },
-        {
-        id: 3,
-        title: "Formula 1 Grand Prix Pace Predictor",
-        description: "Developed a machine learning model using a XGBoost regressor to predict lap times in Formula 1 races. The model was trained on historical race data, weather conditions, and achieved high accuracy in predicting lap times for future races.",
-        image: "/projects/Formula1_pace_predictor.png",
-        tags: ["TensorFlow", "Scikit-learn", "Python", "pandas", "numpy","matplotlib", "Machine Learning"],
-        demoUrl: "https://www.linkedin.com/posts/adam-eccles-616b1427b_machinelearning-f1-datascience-activity-7340383922876235778-ioyy?utm_source=share&utm_medium=member_desktop&rcm=ACoAAERUo3IBBgG_yuKhKGT9EJf9cg_sIfe4exY",
-        githubLink: "https://github.com/ec1s123/Formula-1-GP-Predictor",
-    },
-]
+import { Link } from "react-router-dom";
+import { projectCaseStudies } from "../data/projectCaseStudies";
+import { ArrowRight, ArrowUpRight, ExternalLink, Github } from "lucide-react";
+import { PremierPredictProject } from "./PremierPredictProject";
 
 export const ProjectsSection = () => {
     return (
         <section id="projects" className="py-24 px-4 relative">
             <div className="container mx-auto max-w-5xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
                     Featured <span className="text-primary">Projects</span>
-                </h2>
+                </h1>
 
                 <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-                    Here are a few of my recent projects. Feel free to explore and check out the code on GitHub!
+                    A selection of my projects, from my capstone to machine learning experiments. Explore the work and check out the code on GitHub!
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <PremierPredictProject />
+                    {projectCaseStudies.map((project) => (
                         <div
-                            key={project.id}
-                            className="bg-card rounded-lg overflow-hidden shadow-xs card-hover"
+                            key={project.slug}
+                            className="flex flex-col bg-card rounded-lg overflow-hidden text-left shadow-xs card-hover"
                         >
                             <div className="h-48 overflow-hidden">
                                 <img
                                     src={project.image}
-                                    alt={project.title}
+                                    alt={project.hero.alt}
+                                    loading="lazy"
                                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                                 />
                             </div>
 
-                            <div className="p-6">
-                                <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
-                                <p className="text-muted-foreground text-sm mb-4 py-1">{project.description}</p>
+                            <div className="flex flex-1 flex-col p-6">
+                                <h2 className="text-xl font-semibold mb-1"><Link to={`/projects/${project.slug}`} className="hover:text-primary">{project.title}</Link></h2>
+                                <p className="text-foreground/75 text-sm leading-relaxed mb-4 py-1">{project.description}</p>
 
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {project.tags.map((tag, index) => (
@@ -71,11 +46,15 @@ export const ProjectsSection = () => {
                                     ))}
                                 </div>
 
-                                <div className="flex justify-between items-center">
+                                <div className="mt-auto pt-2 flex flex-wrap gap-4 justify-between items-center">
+                                    <Link to={`/projects/${project.slug}`} className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">
+                                        View project details <ArrowUpRight size={16} aria-hidden="true" />
+                                    </Link>
                                     <div className="flex space-x-3">
                                         {project.demoUrl && (
                                             <a
                                                 href={project.demoUrl}
+                                                aria-label={`View ${project.title} project post`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-foreground/80 hover:text-primary transition-colors duration-300"
@@ -87,6 +66,7 @@ export const ProjectsSection = () => {
                                         {project.githubLink && (
                                             <a
                                                 href={project.githubLink}
+                                                aria-label={`${project.title} source code on GitHub`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="text-foreground/80 hover:text-primary transition-colors duration-300"
