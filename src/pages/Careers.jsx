@@ -1,3 +1,4 @@
+import { CareerLogo } from "../components/CareerLogo";
 import { Link, useSearchParams } from "react-router-dom";
 import { ArrowUpRight, BriefcaseBusiness, Gamepad2 } from "lucide-react";
 import { careerSources, esportsCareer, esportsPress, techCareer, newestFirst, formatCareerDate } from "../data/careers";
@@ -84,8 +85,13 @@ export const Careers = () => {
                                     <span aria-hidden="true" className={`absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full ring-4 ring-background ${index === 0 ? "bg-primary" : "bg-background border border-primary/60"}`} />
                                     <div className="border-b pb-8">
                                         <p className="mb-3 text-xs font-medium tracking-wide text-foreground/60"><time dateTime={entry.start}>{formatCareerDate(entry.start)}</time> — {entry.end ? <time dateTime={entry.end}>{formatCareerDate(entry.end)}</time> : "Present"}</p>
+                                        <div className="flex items-start gap-4">
+                                            <CareerLogo entry={entry} />
+                                            <div className="min-w-0 flex-1">
                                         <div className="flex flex-wrap items-center gap-3"><h3 className="text-2xl font-semibold tracking-tight">{entry.organization}</h3>{!entry.end && <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-medium text-primary">Current</span>}{entry.discipline && <span className="rounded-full border px-2.5 py-1 text-[11px] text-foreground/60">{entry.discipline}</span>}</div>
                                         <p className="mt-2 font-medium text-primary">{entry.role}</p>
+                                            </div>
+                                        </div>
                                         {(entry.employmentType || entry.location) && <p className="mt-2 text-xs leading-relaxed text-foreground/60">{[entry.employmentType, entry.location].filter(Boolean).join(" · ")}</p>}
                                         {entry.description && <p className="mt-4 text-sm leading-relaxed text-foreground/70">{entry.description}</p>}
                                         {entry.highlights && <ul className="mt-4 list-disc space-y-2 pl-4 text-sm leading-relaxed text-foreground/70">{entry.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>}
