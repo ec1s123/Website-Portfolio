@@ -21,5 +21,5 @@ export const careerLogos = {
     fierce: logo("fierce.png"),
     london: logo("london.png"),
     fnatic: logo("fnatic.png"),
-    infused: logo("infused.jpg", true),
+    infused: logo("infused.png"),
 };

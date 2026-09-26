@@ -4,11 +4,38 @@ export const careerSources = {
     counterstrike: { label: "Liquipedia · Counter-Strike", url: "https://liquipedia.net/counterstrike/Ec1s" },
 };
 
+// Display titles summarize the linked articles; the academy page shows its update date.
 export const esportsPress = [
+    {
+        publication: "Esports News UK",
+        title: "Leading VALORANT teaching at the Saudi Esports Academy",
+        author: "Dom Sacco",
+        date: "2025-06-17",
+        dateLabel: "Updated",
+        description: "An interview on designing the academy’s course, coaching aspiring players, and balancing competition with education.",
+        url: "https://esports-news.co.uk/?p=74039",
+    },
+    {
+        publication: "ONE Esports",
+        title: "100T ec1s on NA and EU VALORANT practice",
+        author: "Nigel “Zim947” Zalamea",
+        date: "2022-01-27",
+        description: "My observations on practice discipline and regional differences after joining 100 Thieves as in-game leader.",
+        url: "https://www.oneesports.gg/valorant/100t-ec1s-na-vs-eu-valorant/",
+    },
+    {
+        publication: "App Trigger",
+        title: "Adam “ec1s” Eccles on the move to VALORANT and Team Liquid",
+        author: "Ty Brody",
+        date: "2020-08-30",
+        description: "A conversation about moving from Counter-Strike, captaining fish123, and representing Team Liquid.",
+        url: "https://apptrigger.com/2020/08/30/adam-ec1s-eccles-team-liquid-valorant/",
+    },
     {
         publication: "ESPN",
         title: "Team Liquid sign fish123 roster for VALORANT",
         author: "Arda Ocal",
+        description: "Coverage of Team Liquid’s entry into VALORANT with the fish123 roster.",
         date: "2020-08-06",
         url: "https://www.espn.com/gaming/story/_/id/29610096/team-liquid-sign-fish123-roster-valorant",
     },
@@ -60,14 +87,14 @@ export const esportsCareer = [
     {
         id: "colour-caster", organization: "VCL Challengers Northern Europe / Intel Monsters Reloaded", role: "Colour Caster",
         discipline: "Broadcast", start: "2025-10", end: "2026-05",
-        description: "Provide live analysis and commentary across VALORANT and Counter-Strike 2, explaining tactical decisions and key moments as the action unfolds.",
+        description: "Provided live analysis and commentary across VALORANT and Counter-Strike 2, explaining tactical decisions and key moments as the action unfolds.",
     },
     {
         id: "maryville-coach", organization: "Maryville University VALORANT Team", role: "Assistant Coach",
         discipline: "Coaching", start: "2024-08", end: "2026-05",
         highlights: [
-            "Coach players one-on-one, using focused VOD reviews to build confidence and identify actionable improvements.",
-            "Guide improvement-focused sessions for 10+ academy players, balancing individual development with team performance.",
+            "Coached players one-on-one, using focused VOD reviews to build confidence and identify actionable improvements.",
+            "Guided improvement-focused sessions for 10+ academy players, balancing individual development with team performance.",
         ],
     },
     {

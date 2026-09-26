@@ -1,4 +1,4 @@
-import { CareerLogo } from "../components/CareerLogo";
+import { CareerEntry } from "../components/CareerEntry";
 import { Link, useSearchParams } from "react-router-dom";
 import { ArrowUpRight, BriefcaseBusiness, Gamepad2 } from "lucide-react";
 import { careerSources, esportsCareer, esportsPress, techCareer, newestFirst, formatCareerDate } from "../data/careers";
@@ -37,18 +37,26 @@ export const Careers = () => {
 
             {isEsports && (
                 <section aria-label="Esports career highlights" className="mb-12 border-b pb-10 md:mb-16">
-                    <dl className="grid gap-8 sm:grid-cols-3">
-                        <div><dt className="mb-3 text-sm text-foreground/65">UK CS:GO national titles</dt><dd className="text-4xl font-semibold tracking-tight text-primary">3</dd></div>
-                        <div><dt className="mb-3 text-sm text-foreground/65">Students taught in eight weeks</dt><dd className="text-4xl font-semibold tracking-tight">50+</dd></div>
-                        <div><dt className="mb-3 text-sm text-foreground/65">Academy players coached</dt><dd className="text-4xl font-semibold tracking-tight">10+</dd></div>
+                    <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                        {[
+                            { value: "8", label: "North American collegiate VALORANT national championships" },
+                            { value: "3", label: "UK CS:GO national championships" },
+                            { value: "50+", label: "Students taught live" },
+                            { value: "300+", label: "Online academy players and students taught" },
+                        ].map(({ value, label }) => (
+                            <div key={label} className="flex flex-col gap-3">
+                                <dt className="text-sm leading-relaxed text-foreground/65">{label}</dt>
+                                <dd className="order-first text-4xl font-semibold tracking-tight text-primary">{value}</dd>
+                            </div>
+                        ))}
                     </dl>
                 </section>
             )}
 
             {isEsports && (
                 <section aria-labelledby="press-heading" className="mb-12 border-b pb-10 md:mb-16">
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary">In the press / 2020</p>
-                    <h2 id="press-heading" className="text-3xl font-semibold tracking-tight">From fish123 to Team Liquid.</h2>
+                    <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary">Selected coverage & interviews</p>
+                    <h2 id="press-heading" className="text-3xl font-semibold tracking-tight">Competition, leadership, and teaching.</h2>
                     <div className="mt-8 grid gap-8 sm:grid-cols-2">
                         {esportsPress.map((article) => (
                             <article key={article.url} className="border-t pt-5">
@@ -58,7 +66,7 @@ export const Careers = () => {
                                         {article.title}<ArrowUpRight size={18} className="mt-1 shrink-0" aria-hidden="true" />
                                     </a>
                                 </h3>
-                                <p className="mt-3 text-xs text-foreground/55">{article.author} · <time dateTime={article.date}>{formatCareerDate(article.date)}</time></p>
+                                <p className="mt-3 text-xs text-foreground/55">{article.author} · {article.dateLabel && `${article.dateLabel} `}<time dateTime={article.date}>{formatCareerDate(article.date)}</time></p>
                                 {article.description && <p className="mt-4 text-sm leading-relaxed text-foreground/65">{article.description}</p>}
                             </article>
                         ))}
@@ -81,22 +89,7 @@ export const Careers = () => {
                     {entries.length > 0 ? (
                         <ol className="ml-2 border-l border-primary/25">
                             {entries.map((entry, index) => (
-                                <li key={entry.id} className="relative pb-10 pl-7 last:pb-0 sm:pl-10">
-                                    <span aria-hidden="true" className={`absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full ring-4 ring-background ${index === 0 ? "bg-primary" : "bg-background border border-primary/60"}`} />
-                                    <div className="border-b pb-8">
-                                        <p className="mb-3 text-xs font-medium tracking-wide text-foreground/60"><time dateTime={entry.start}>{formatCareerDate(entry.start)}</time> — {entry.end ? <time dateTime={entry.end}>{formatCareerDate(entry.end)}</time> : "Present"}</p>
-                                        <div className="flex items-start gap-4">
-                                            <CareerLogo entry={entry} />
-                                            <div className="min-w-0 flex-1">
-                                        <div className="flex flex-wrap items-center gap-3"><h3 className="text-2xl font-semibold tracking-tight">{entry.organization}</h3>{!entry.end && <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-medium text-primary">Current</span>}{entry.discipline && <span className="rounded-full border px-2.5 py-1 text-[11px] text-foreground/60">{entry.discipline}</span>}</div>
-                                        <p className="mt-2 font-medium text-primary">{entry.role}</p>
-                                            </div>
-                                        </div>
-                                        {(entry.employmentType || entry.location) && <p className="mt-2 text-xs leading-relaxed text-foreground/60">{[entry.employmentType, entry.location].filter(Boolean).join(" · ")}</p>}
-                                        {entry.description && <p className="mt-4 text-sm leading-relaxed text-foreground/70">{entry.description}</p>}
-                                        {entry.highlights && <ul className="mt-4 list-disc space-y-2 pl-4 text-sm leading-relaxed text-foreground/70">{entry.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul>}
-                                    </div>
-                                </li>
+                                <CareerEntry key={entry.id} entry={entry} latest={index === 0} />
                             ))}
                         </ol>
                     ) : (

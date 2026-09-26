@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { Code, Brain, Bot } from "lucide-react";
+import { Code, Brain, Bot, ArrowUpRight } from "lucide-react";
+
+import { socialProfiles } from "../data/socials";
 
 export const AboutSection  = () => {
     return ( <section id = "about" className = "py-24 px-4 relative">
@@ -30,6 +32,14 @@ export const AboutSection  = () => {
                             gaming, or sharing my knowledge through content creation. 
                             I'm always willing to connect with like-minded individuals and collaborate on exciting projects.
                         </p>
+
+                        <nav aria-label="Social profiles" className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
+                            {socialProfiles.map(({ name, url }) => (
+                                <a key={url} href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-foreground/65 transition-colors hover:text-primary rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+                                    {name}<ArrowUpRight size={14} aria-hidden="true" />
+                                </a>
+                            ))}
+                        </nav>
 
                         <div className = "flex flex-col sm:flex-row gap-4 pt-4 justify-center">
                             <Link to="/contact" className = "cosmic-button">
