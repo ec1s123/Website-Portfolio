@@ -8,6 +8,7 @@ Liquipedia profile pages were used as the career references. Direct downloads we
 | --- | --- |
 | `100thieves.png` | https://owcdn.net/img/603c00d5c5a08.png |
 | `automate-army.svg` | https://www.automatearmy.com/favicon.svg |
+| `endpoint.png` | https://upload.wikimedia.org/wikipedia/commons/f/fa/Endpoint_Esports.png |
 | `auxiliary-digital.png` | https://www.auxiliary.digital/favicon.png |
 | `fierce.png` | https://liquipedia.net/commons/images/e/e5/FierceEsports_Grey_Square.png |
 | `fish123.png` | https://owcdn.net/img/5eb5711b4c642.png |
@@ -27,6 +28,8 @@ VLR profile reference: https://www.vlr.gg/player/100/ec1s/?timespan=all. Additio
 
 Infused archive: https://www.comp.tf/index.php?title=File:Infused_Logo.png. Saudi academy asset: https://www.sea.sa/course-catalog.
 
-RADIX and WE HAWT use initials because a usable, verified logo was not retrieved. Broadcast entries span multiple events and use a microphone icon. The same fallback treatment also handles image loading errors.
+Broadcast entries span multiple events and use a microphone icon. Initials handle missing logos and image loading errors. RADIX and WE HAWT were removed from the displayed team list at Adam’s request.
+
+Endpoint logo reference: https://commons.wikimedia.org/wiki/File:Endpoint_Esports.png. Endpoint appearances in 2017: https://www.hltv.org/stats/players/events/14558/ec1s?country=Spain&csVersion=CSGO. Year precision records appearances, not exact roster tenure.
 
 Logo correction: Fierce Esports (the Fierce PC organization) replaces the unrelated VLR Fierce mark. Infused uses the transparent headset emblem matching the user’s reference, sourced from comp.tf.

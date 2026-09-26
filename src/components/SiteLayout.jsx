@@ -34,7 +34,7 @@ export const SiteLayout = () => {
 
     return (
         <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
-            <StarBackground />
+            <StarBackground subdued={pathname === "/about"} />
             <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-card focus:p-3">Skip to content</a>
             <Navbar key={pathname} />
             <div className="relative z-10 flex min-h-screen flex-col pt-20">

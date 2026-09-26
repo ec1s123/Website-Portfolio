@@ -24,14 +24,6 @@ export const esportsPress = [
         url: "https://www.oneesports.gg/valorant/100t-ec1s-na-vs-eu-valorant/",
     },
     {
-        publication: "App Trigger",
-        title: "Adam “ec1s” Eccles on the move to VALORANT and Team Liquid",
-        author: "Ty Brody",
-        date: "2020-08-30",
-        description: "A conversation about moving from Counter-Strike, captaining fish123, and representing Team Liquid.",
-        url: "https://apptrigger.com/2020/08/30/adam-ec1s-eccles-team-liquid-valorant/",
-    },
-    {
         publication: "ESPN",
         title: "Team Liquid sign fish123 roster for VALORANT",
         author: "Arda Ocal",
@@ -53,9 +45,10 @@ export const esportsPress = [
 // Tech roles, dates, and descriptions supplied in Adam's LinkedIn screenshots.
 export const techCareer = [
     {
-        id: "auxiliary-digital", organization: "Auxiliary Digital", role: "Forward Deployed Engineer",
+        id: "auxiliary-digital", organization: "Auxiliary Digital", role: "Business Technical Analyst",
         start: "2026-05", end: null, source: "linkedin",
         employmentType: "Full-time", location: "St. Louis, Missouri · On-site",
+        description: "Combine business analysis with hands-on software development across the frontend and backend. Gather requirements, write user stories, clarify product behavior, and guide implementation with engineers while contributing code to deliver useful products.",
     },
     {
         id: "automate-army", organization: "Automate Army", role: "Software Engineer",
@@ -64,22 +57,25 @@ export const techCareer = [
         description: "Built a typed operations platform with a secure TypeScript/Express API, PostgreSQL/Drizzle data layer, and BigQuery analytics. Delivered Next.js reporting forms with validation and draft recovery, supported by structured logging, Vitest tests, and Docker.",
     },
     {
-        id: "maryville-ai-engineer", organization: "Maryville University of Saint Louis", role: "AI Agent & Machine Learning Engineer",
-        start: "2025-09", end: "2026-05", source: "linkedin",
-        employmentType: "Part-time", location: "St. Louis, Missouri · Hybrid",
-        description: "Built course-specific AI agents with source-linked answers and an end-to-end ML pipeline to classify student chats by semantic meaning and analyze resource usage. Tested prompts, source relevance, and citation accuracy to keep responses aligned with course materials.",
+        id: "maryville-ai-engineer", organization: "Maryville University of Saint Louis", role: "AI research & engineering",
+        start: "2025-01", end: "2026-05", source: "linkedin",
+        location: "St. Louis, Missouri · Hybrid",
+        progression: [
+            {
+                role: "AI Research Intern", start: "2025-01", end: "2025-09", employmentType: "Internship",
+                description: "Built AI learning tools and assistants with faculty, including LLM bots for SOC analyst training and graduate nursing decision-making.",
+            },
+            {
+                role: "AI Agent & Machine Learning Engineer", start: "2025-09", end: "2026-05", employmentType: "Work study",
+                description: "Built course-specific AI agents with source-linked answers and an ML pipeline to classify student chats and analyze resource usage. Evaluated prompts, source relevance, and citation accuracy.",
+            },
+        ],
     },
     {
         id: "neuralseek", organization: "NeuralSeek", role: "Agentic AI Intern",
         start: "2025-08", end: "2025-09", source: "linkedin",
         employmentType: "Internship", location: "Remote",
         description: "Completed NeuralSeek’s L1–L3 AI certifications and built and deployed a custom no-code AI agent. Analyzed competing AI platforms, contributed to cross-functional go-to-market initiatives, and presented a capstone demonstrating practical AI deployment.",
-    },
-    {
-        id: "maryville-ai-research", organization: "Maryville University of Saint Louis", role: "AI Research Intern",
-        start: "2025-01", end: "2025-09", source: "linkedin",
-        employmentType: "Internship", location: "St. Louis, Missouri · Hybrid",
-        description: "Built AI learning tools and intelligent assistants for university operations and education. Collaborated with faculty on predictive and scenario-based models, including custom LLM bots for SOC analyst training and graduate nursing decision-making.",
     },
 ];
 
@@ -112,12 +108,12 @@ export const esportsCareer = [
     { id: "nip", organization: "Ninjas in Pyjamas", role: "Player · In-game leader", discipline: "VALORANT", start: "2021-07", end: "2021-12", source: "valorant", description: "Active roster through November 2021; inactive until December." },
     { id: "liquid", organization: "Team Liquid", role: "Player · In-game leader", discipline: "VALORANT", start: "2020-08", end: "2021-05", source: "valorant", description: "Active roster through February 2021; inactive until May." },
     { id: "fish123", organization: "fish123", role: "Player · Captain & in-game leader", discipline: "VALORANT", start: "2020-04", end: "2020-08", source: "valorant", description: "Led the free-agent roster that became Team Liquid’s first VALORANT lineup in 2020." },
-    { id: "vexed", organization: "Vexed Gaming", role: "Player · Trial", discipline: "Counter-Strike", start: "2019-08", end: "2019-12", source: "counterstrike" },
+    { id: "vexed", organization: "Vexed Gaming", role: "Player", discipline: "Counter-Strike", start: "2019-08", end: "2019-12", source: "counterstrike" },
     { id: "fierce", organization: "Fierce Esports", role: "Player", discipline: "Counter-Strike", start: "2019-03", end: "2019-08", source: "counterstrike" },
     { id: "london", organization: "London Esports", role: "Player", discipline: "Counter-Strike", start: "2018-11", end: "2019-03", source: "counterstrike" },
     { id: "fnatic", organization: "Fnatic Academy", role: "Player", discipline: "Counter-Strike", start: "2018-04", end: "2018-10", source: "counterstrike", description: "Joined Fnatic Academy after winning the GAMERZ esports reality competition." },
-    { id: "wehawt", organization: "WE HAWT", role: "Player", discipline: "Counter-Strike", start: "2018-01", end: "2018-03", source: "counterstrike" },
-    { id: "radix", organization: "RADIX", role: "Player", discipline: "Counter-Strike", start: "2017-09", end: "2018-01", source: "counterstrike" },
+    // Year of documented Endpoint appearances; exact tenure dates are not asserted.
+    { id: "endpoint", organization: "Team Endpoint", role: "Player", discipline: "Counter-Strike", start: "2017", end: "2017", source: "counterstrike" },
     { id: "infused", organization: "Team Infused", role: "Player", discipline: "Counter-Strike", start: "2017-06", end: "2017-09", source: "counterstrike", description: "Competed in London’s televised Gfinity Elite Series." },
 ];
 

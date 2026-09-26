@@ -18,6 +18,7 @@ export const careerLogos = {
     liquid: logo("liquid.png"),
     fish123: logo("fish123.png"),
     vexed: logo("vexed.png"),
+    endpoint: logo("endpoint.png"),
     fierce: logo("fierce.png"),
     london: logo("london.png"),
     fnatic: logo("fnatic.png"),

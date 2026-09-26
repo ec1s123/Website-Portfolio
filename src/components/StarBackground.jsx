@@ -14,7 +14,7 @@ const meteors = [
     { x: 70, y: 84, duration: 8.9, delay: -0.7 },
 ];
 
-export const StarBackground = () => {
+export const StarBackground = ({ subdued = false }) => {
     const [stars, setStars] = useState([]);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export const StarBackground = () => {
     }, []);
 
     return (
-        <div aria-hidden="true" className="starfield fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div aria-hidden="true" className={`starfield fixed inset-0 z-0 overflow-hidden pointer-events-none ${subdued ? "opacity-40" : ""}`}>
             {stars.map((star) => (
                 <span
                     key={star.id}

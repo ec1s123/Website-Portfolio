@@ -1,14 +1,14 @@
+import { EsportsCareer } from "../components/EsportsCareer";
 import { CareerEntry } from "../components/CareerEntry";
 import { Link, useSearchParams } from "react-router-dom";
 import { ArrowUpRight, BriefcaseBusiness, Gamepad2 } from "lucide-react";
-import { careerSources, esportsCareer, esportsPress, techCareer, newestFirst, formatCareerDate } from "../data/careers";
+import { careerSources, techCareer, newestFirst } from "../data/careers";
 
 export const Careers = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const track = searchParams.get("track") === "esports" ? "esports" : "tech";
     const isEsports = track === "esports";
-    const entries = newestFirst(isEsports ? esportsCareer : techCareer);
-    const sources = isEsports ? [careerSources.valorant, careerSources.counterstrike] : [careerSources.linkedin];
+    const entries = newestFirst(techCareer);
 
     const selectTrack = (value) => {
         const next = new URLSearchParams(searchParams);
@@ -32,75 +32,23 @@ export const Careers = () => {
                         </button>
                     ))}
                 </div>
-                <p className="text-xs uppercase tracking-widest text-foreground/55">Most recent first</p>
+                <p className="text-xs uppercase tracking-widest text-foreground/55">{isEsports ? "Teams & career highlights" : "Most recent first"}</p>
             </div>
 
-            {isEsports && (
-                <section aria-label="Esports career highlights" className="mb-12 border-b pb-10 md:mb-16">
-                    <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                        {[
-                            { value: "8", label: "North American collegiate VALORANT national championships" },
-                            { value: "3", label: "UK CS:GO national championships" },
-                            { value: "50+", label: "Students taught live" },
-                            { value: "300+", label: "Online academy players and students taught" },
-                        ].map(({ value, label }) => (
-                            <div key={label} className="flex flex-col gap-3">
-                                <dt className="text-sm leading-relaxed text-foreground/65">{label}</dt>
-                                <dd className="order-first text-4xl font-semibold tracking-tight text-primary">{value}</dd>
-                            </div>
-                        ))}
-                    </dl>
+            {isEsports ? <EsportsCareer /> : (
+                <section id="career-timeline" aria-labelledby="timeline-heading">
+                    <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+                        <h2 id="timeline-heading" className="text-3xl font-semibold tracking-tight">Engineering & technology</h2>
+                        <a href={careerSources.linkedin.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 py-2 text-sm text-foreground/65 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+                            Full experience on LinkedIn <ArrowUpRight size={14} aria-hidden="true" />
+                        </a>
+                    </div>
+                    <p className="sr-only" role="status">Tech career selected. {entries.length} organizations, most recent first.</p>
+                    <ol className="divide-y">
+                        {entries.map((entry) => <CareerEntry key={entry.id} entry={entry} />)}
+                    </ol>
                 </section>
             )}
-
-            {isEsports && (
-                <section aria-labelledby="press-heading" className="mb-12 border-b pb-10 md:mb-16">
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary">Selected coverage & interviews</p>
-                    <h2 id="press-heading" className="text-3xl font-semibold tracking-tight">Competition, leadership, and teaching.</h2>
-                    <div className="mt-8 grid gap-8 sm:grid-cols-2">
-                        {esportsPress.map((article) => (
-                            <article key={article.url} className="border-t pt-5">
-                                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary">{article.publication}</p>
-                                <h3 className="text-xl font-medium leading-snug">
-                                    <a href={article.url} target="_blank" rel="noopener noreferrer" className="group inline-flex items-start gap-3 rounded-sm hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
-                                        {article.title}<ArrowUpRight size={18} className="mt-1 shrink-0" aria-hidden="true" />
-                                    </a>
-                                </h3>
-                                <p className="mt-3 text-xs text-foreground/55">{article.author} · {article.dateLabel && `${article.dateLabel} `}<time dateTime={article.date}>{formatCareerDate(article.date)}</time></p>
-                                {article.description && <p className="mt-4 text-sm leading-relaxed text-foreground/65">{article.description}</p>}
-                            </article>
-                        ))}
-                    </div>
-                </section>
-            )}
-
-            <section id="career-timeline" aria-labelledby="timeline-heading" className="grid items-start gap-10 md:grid-cols-[1fr_2fr] md:gap-16">
-                <div className="md:sticky md:top-28">
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary">{isEsports ? "Competition & leadership" : "Engineering & technology"}</p>
-                    <h2 id="timeline-heading" className="text-3xl font-semibold tracking-tight md:text-4xl">{isEsports ? "Beyond the server." : "Building what’s next."}</h2>
-                    <p className="mt-5 text-sm leading-relaxed text-foreground/65">{isEsports ? "From team captain and in-game leader to coach, instructor, and colour caster. My playing career took me across Europe, North America, and India, representing organizations including Team Liquid, 100 Thieves, Ninjas in Pyjamas, and Fnatic Academy." : "My work in software development, machine learning, and AI, alongside the projects that put those skills into practice."}</p>
-                    <div className="mt-6 flex flex-col items-start gap-3">
-                        {sources.map((source) => <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-primary hover:underline">{source.label}<ArrowUpRight size={14} aria-hidden="true" /></a>)}
-                    </div>
-                </div>
-
-                <div className="min-w-0">
-                    <p className="sr-only" role="status">{isEsports ? "Esports" : "Tech"} timeline selected. {entries.length} entries.</p>
-                    {entries.length > 0 ? (
-                        <ol className="ml-2 border-l border-primary/25">
-                            {entries.map((entry, index) => (
-                                <CareerEntry key={entry.id} entry={entry} latest={index === 0} />
-                            ))}
-                        </ol>
-                    ) : (
-                        <div className="border-y py-10">
-                            <h3 className="text-2xl font-semibold">Explore my work</h3>
-                            <p className="mt-4 max-w-md text-sm leading-relaxed text-foreground/65">Find my professional experience on LinkedIn, or explore the applications and machine learning projects I’ve built.</p>
-                            <Link to="/projects" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">View projects <ArrowUpRight size={16} aria-hidden="true" /></Link>
-                        </div>
-                    )}
-                </div>
-            </section>
 
             {!isEsports && (
                 <div className="mt-16 flex flex-wrap items-center justify-between gap-5 border-t pt-8">

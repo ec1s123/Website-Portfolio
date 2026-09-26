@@ -1,107 +1,81 @@
 import { Link } from "react-router-dom";
-import { Code, Brain, Bot, ArrowUpRight } from "lucide-react";
-
+import { ArrowUpRight } from "lucide-react";
 import { socialProfiles } from "../data/socials";
 
-export const AboutSection  = () => {
-    return ( <section id = "about" className = "py-24 px-4 relative">
-        <div className="container mx-auto max-w-5xl">
-            <h1 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-                About <span className = "text-primary">Me</span>
-            </h1>
+const textLink = "inline-flex items-center gap-1.5 py-2 font-medium transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div className="space-y-6">
-                    <h3 className="text-2xl font-semibold"> 
-                        My Story
-                    </h3>
-                        <p> 
-                            I competed in Professional Esports for over 7 Years, in Counter-Strike and Valorant.
-                            I have coached multiple teams to championships in National and International tournaments.
-                            I have taught University style lectures at the Esports Academy on various topics including Team Dynamics, Strategy and In-Game Leadership.
-                            
-                        </p> 
-                        <p>
-                            After retiring from competitive gaming, I transitioned into software development, 
-                            driven by my fascination with technology and problem-solving.
+export const AboutSection = () => (
+    <section id="about" aria-labelledby="about-title" className="relative px-4 py-16 sm:py-24">
+        <div className="container mx-auto max-w-5xl text-left">
+            <header className="mb-10 max-w-3xl sm:mb-14">
+                <p className="mb-5 text-sm font-semibold tracking-wide text-primary">About me</p>
+                <h1 id="about-title" className="text-4xl font-semibold leading-[1.12] tracking-tight sm:text-5xl">
+                    From leading teams<br className="hidden sm:block" /> to <span className="text-primary">building software.</span>
+                </h1>
+            </header>
 
+            <div className="grid items-start gap-10 md:grid-cols-[1.15fr_1fr] lg:gap-16">
+                <div className="contents md:block">
+                    <div className="order-1">
+                        <h2 className="mb-4 text-xl font-semibold">From requirements to working software</h2>
+                        <p className="leading-7 text-foreground/75">
+                            I’m Adam, a software developer with a background in professional esports
+                            and an interest in data analytics, machine learning, and AI.
                         </p>
-
-                        <p> 
-                            When I'm not coding, you can find me at the gym, rock climbing,
-                            gaming, or sharing my knowledge through content creation. 
-                            I'm always willing to connect with like-minded individuals and collaborate on exciting projects.
+                        <p className="mt-4 leading-7 text-foreground/75">
+                            As a Business Technical Analyst, I gather requirements, write user stories,
+                            and help engineers work through how features should behave. I enjoy asking
+                            questions, making sense of different needs, and giving the team a clear
+                            direction.
                         </p>
-
-                        <nav aria-label="Social profiles" className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
-                            {socialProfiles.map(({ name, url }) => (
-                                <a key={url} href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-foreground/65 transition-colors hover:text-primary rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
-                                    {name}<ArrowUpRight size={14} aria-hidden="true" />
-                                </a>
-                            ))}
-                        </nav>
-
-                        <div className = "flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-                            <Link to="/contact" className = "cosmic-button">
-                                Get in Touch
-                            </Link>
-
-                            <a href="/Adam_Eccles_Resume.pdf" className = "px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colours duration-300">    
-                             Download My CV
-                             </a>
-                        </div>
+                        <p className="mt-4 leading-7 text-foreground/75">
+                            I’m also hands-on with the engineering: building frontend interfaces,
+                            writing backend APIs, and connecting them into working applications.
+                            My favourite part is figuring out how to solve a problem and implementing
+                            the solution myself, learning as I go.
+                        </p>
                     </div>
-
-                    <div className="grid grid-cols-1 gap-6">
-                        <div className = "gradient-border p-6 card-hover">
-                            <div className = "flex items-start gap-4">
-                                <div className="p-3 rounded-full bg-primary/10">   
-                                    <Code className = "h-6 w-6 text-primary" />
-                                </div>
-                                <div className = "text-left">
-                                    <h4 className = "text-lg font-semibold">
-                                        Back End Development
-                                    </h4>
-                                    <p className="muted-foreground">
-                                        Creating robust and scalable back-end systems using Modern frameworks and best practices.
-                                    </p>
-                                 </div>
-                            </div>
-                        </div>
-                        <div className = "gradient-border p-6 card-hover">
-                            <div className = "flex items-start gap-4">
-                                <div className="p-3 rounded-full bg-primary/10">   
-                                    <Brain className = "h-6 w-6 text-primary" />
-                                </div>
-                                <div className = "text-left">
-                                    <h4 className = "text-lg font-semibold">
-                                        Machine Learning
-                                    </h4>
-                                    <p className="muted-foreground">
-                                        Building and deploying machine learning models to solve complex problems and drive data-driven decision making.
-                                    </p>
-                                 </div>
-                            </div>
-                        </div>
-                        <div className = "gradient-border p-6 card-hover">
-                            <div className = "flex items-start gap-4">
-                                <div className="p-3 rounded-full bg-primary/10">   
-                                    <Bot className = "h-6 w-6 text-primary" />
-                                </div>
-                                <div className = "text-left">
-                                    <h4 className = "text-lg font-semibold">
-                                        Artificial Intelligence
-                                    </h4>
-                                    <p className="muted-foreground">
-                                            Creating robust and scalable Agentic AI systems using modern frameworks and best practices.
-                                        </p>
-                                    </div>
-                                </div>
-                        </div>
+                    <div className="order-3 md:mt-9">
+                        <h2 className="mb-4 text-xl font-semibold">Before software, esports</h2>
+                        <p className="leading-7 text-foreground/75">
+                            I competed professionally in Counter-Strike and VALORANT. Alongside playing
+                            and leading teams, I coached players and taught strategy, team dynamics,
+                            and in-game leadership.
+                        </p>
+                        <p className="mt-4 leading-7 text-foreground/75">
+                            Coaching taught me to give specific feedback, adapt how I explain an idea,
+                            and help people improve together. Those habits still shape how I work
+                            with a team.
+                        </p>
+                        <Link to="/careers" className={`${textLink} mt-3 text-primary`}>
+                            Explore my career <ArrowUpRight size={17} aria-hidden="true" />
+                        </Link>
                     </div>
-                
+                    <div className="order-4 md:mt-9">
+                        <h2 className="mb-4 text-xl font-semibold">Away from the screen</h2>
+                        <p className="leading-7 text-foreground/75">
+                            You’ll usually find me at the gym, rock climbing, or gaming. I also enjoy
+                            creating content and sharing what I’ve learned.
+                        </p>
+                    </div>
+                </div>
+
+                    <figure className="order-2 md:sticky md:top-28">
+                        <img src="/projects/image.png" alt="Adam Eccles in a Maryville esports jersey, looking back toward the camera" width="2048" height="2048" className="aspect-[4/5] w-full object-cover object-[50%_35%]" />
+                        <figcaption className="mt-3 text-sm text-foreground/60">A chapter of my life in competitive esports.</figcaption>
+                    </figure>
             </div>
+
+            <nav aria-label="Contact and social profiles" className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-2 border-t pt-6 text-sm">
+                <Link to="/contact" className={`${textLink} text-primary`}>
+                    Get in touch <ArrowUpRight size={16} aria-hidden="true" />
+                </Link>
+                {socialProfiles.map(({ name, url }) => (
+                    <a key={url} href={url} target="_blank" rel="noopener noreferrer" className={`${textLink} text-foreground/70`}>
+                        {name}<ArrowUpRight size={14} aria-hidden="true" />
+                    </a>
+                ))}
+            </nav>
         </div>
     </section>
-    );
-};
+);
