@@ -38,7 +38,7 @@ export const StarBackground = () => {
             {stars.map((star) => (
                 <span
                     key={star.id}
-                    className={`star${star.twinkle ? " star-twinkle" : ""}${star.prominent ? " star-prominent" : ""}`}
+                    className={["star", star.twinkle ? "star-twinkle" : "", star.prominent ? "star-prominent" : ""].filter(Boolean).join(" ")}
                     style={{
                         width: star.size,
                         height: star.size,

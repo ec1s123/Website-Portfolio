@@ -155,8 +155,10 @@
     hover:scale-105 active:scale-95;
 }
 
-@utility star {
-  @apply absolute rounded-full;
+/* Always emit the base rule: generated stars rely on absolute positioning. */
+.star {
+  position: absolute;
+  border-radius: 50%;
   background: hsl(var(--star-color));
   opacity: calc(var(--star-opacity) * var(--star-strength));
   box-shadow: 0 0 4px hsl(var(--star-glow) / 0.25);
