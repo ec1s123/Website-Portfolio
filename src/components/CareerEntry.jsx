@@ -1,6 +1,6 @@
 import { CareerLogo } from "./CareerLogo";
 import { DateRange } from "./ui/DateRange";
-import { HairlineItem, HairlineList } from "./ui/HairlineList";
+import { HairlineItem, HairlineLink, HairlineList } from "./ui/HairlineList";
 import { TagList } from "./ui/TagList";
 
 export const CareerEntry = ({ entry }) => (
@@ -23,8 +23,8 @@ export const CareerEntry = ({ entry }) => (
             {entry.summary && <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">{entry.summary}</p>}
             {entry.highlights?.length > 0 && (
                 <HairlineList label={`Highlights as ${entry.role}`} className="mt-5 max-w-4xl">
-                    {entry.highlights.map(({ title, description }) => (
-                        <HairlineItem key={title} title={title} as="h4">{description}</HairlineItem>
+                    {entry.highlights.map(({ title, description, wide, caseStudy }) => (
+                        <HairlineItem key={title} title={caseStudy ? <HairlineLink to={caseStudy}>{title}</HairlineLink> : title} as="h4" wide={wide}>{description}</HairlineItem>
                     ))}
                 </HairlineList>
             )}

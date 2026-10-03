@@ -2,6 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowUpRight, Github } from "lucide-react";
 import { projectCaseStudies } from "../data/projectCaseStudies";
 import { NotFound } from "./NotFound";
+import { CaseStudyHeader } from "../components/ui/CaseStudy";
+import { caseStudyPage, linkUnderline } from "../lib/styles";
 
 const ProjectFigure = ({ figure, priority = false }) => (
     <figure className="min-w-0">
@@ -21,19 +23,14 @@ export const ProjectCaseStudy = () => {
     if (!project) return <NotFound />;
 
     return (
-        <article className="mx-auto max-w-6xl px-6 pb-20 pt-10 text-left sm:px-10 md:pb-28 md:pt-16">
-            <Link to="/projects" className="inline-block text-sm text-subtle transition-colors hover:text-primary">← All projects</Link>
-            <header className="pb-10 pt-12 md:pb-14 md:pt-20">
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">{project.eyebrow}</p>
-                <h1 className="max-w-5xl text-5xl font-semibold tracking-tight sm:text-7xl lg:text-8xl">{project.title}<span className="text-primary">.</span></h1>
-                <div className="mt-8 grid items-start gap-8 md:grid-cols-[1fr_auto] md:gap-16">
-                    <p className="max-w-2xl text-xl leading-relaxed text-muted md:text-2xl">{project.intro}</p>
-                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="inline-flex w-fit items-center gap-2 border-b border-primary pb-2 text-sm font-medium text-primary hover:text-foreground"><Github size={18} aria-hidden="true" /> Explore the code <ArrowUpRight size={16} aria-hidden="true" /></a>
-                </div>
-                <dl className="mt-10 grid grid-cols-2 gap-6 border-t pt-6 text-sm md:grid-cols-4">
-                    {project.metadata.map(([label, value]) => <div key={label}><dt className="mb-2 text-xs uppercase tracking-widest text-subtle">{label}</dt><dd>{value}</dd></div>)}
-                </dl>
-            </header>
+        <article className={caseStudyPage}>
+            <CaseStudyHeader
+                eyebrow={project.eyebrow}
+                title={project.title}
+                intro={project.intro}
+                action={<a href={project.githubLink} target="_blank" rel="noopener noreferrer" className={linkUnderline}><Github size={18} aria-hidden="true" /> Explore the code <ArrowUpRight size={16} aria-hidden="true" /><span className="sr-only">(opens in a new tab)</span></a>}
+                metadata={project.metadata}
+            />
 
             <ProjectFigure figure={project.hero} priority />
 

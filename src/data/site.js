@@ -10,6 +10,7 @@ export const pageTitles = {
     "/skills": "Skills",
     "/projects": "Projects",
     "/projects/premier-predict": "Premier Predict — Capstone",
+    "/projects/conversation-intent-review": "Conversation Intent Review Platform",
     ...Object.fromEntries(projectCaseStudies.map((project) => [`/projects/${project.slug}`, project.title])),
     "/contact": "Contact",
 };

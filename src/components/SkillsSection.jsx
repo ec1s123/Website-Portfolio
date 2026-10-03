@@ -9,7 +9,7 @@ const skillGroups = [
     },
     {
         title: "Backend & databases",
-        skills: ["Node.js", "Express.js", "Java", "SQL", "PostgreSQL", "SQLite", "Drizzle ORM", "Redis", "BullMQ"],
+        skills: ["Node.js", "Express.js", "Python", "FastAPI", "Java", "SQL", "PostgreSQL", "SQLite", "Drizzle ORM", "Redis", "BullMQ"],
     },
     {
         title: "Frontend",

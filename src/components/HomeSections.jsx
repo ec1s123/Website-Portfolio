@@ -7,9 +7,9 @@ import { SectionHeader } from "./ui/SectionHeader";
 import { esportsCareer, esportsPress, formatCareerDate, newestFirst, techCareer } from "../data/careers";
 import { findProject } from "../data/projects";
 import { professionalProfiles, resumeUrl } from "../data/socials";
-import { buttonOutline, buttonPrimary, cardLink, linkPrimary } from "../lib/styles";
+import { buttonOutline, buttonPrimary, cardLink, linkPrimary, shell } from "../lib/styles";
 
-const wrapper = "mx-auto max-w-6xl px-6 text-left sm:px-10";
+const wrapper = `${shell} text-left`;
 
 const allEntries = [...techCareer, ...esportsCareer];
 const logoGroups = [

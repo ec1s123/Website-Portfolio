@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Github } from "lucide-react";
+import { CaseStudyHeader } from "../components/ui/CaseStudy";
+import { caseStudyPage, linkUnderline } from "../lib/styles";
 
 const screenshots = [
     {
@@ -83,28 +85,19 @@ const Screenshot = ({ screenshot, priority = false }) => (
 );
 
 export const PremierPredict = () => (
-    <article className="mx-auto max-w-6xl px-6 pb-20 pt-10 text-left sm:px-10 md:pb-28 md:pt-16">
-        <Link to="/projects" className="inline-block text-sm text-subtle transition-colors hover:text-primary">← All projects</Link>
-
-        <header className="pb-10 pt-12 md:pb-14 md:pt-20">
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Capstone / Machine learning / Sports analytics</p>
-            <h1 className="text-5xl font-semibold tracking-tight sm:text-7xl lg:text-8xl">Premier Predict<span className="text-primary">.</span></h1>
-            <div className="mt-8 grid items-start gap-8 md:grid-cols-[1fr_auto] md:gap-16">
-                <p className="max-w-2xl text-xl leading-relaxed text-muted md:text-2xl">
-                    From raw match data to a clearer picture of the Premier League.
-                    A custom ML pipeline, brought to life in an interactive dashboard.
-                </p>
-                <a href="https://github.com/ec1s123/Capstone" target="_blank" rel="noopener noreferrer" className="inline-flex w-fit items-center gap-2 border-b border-primary pb-2 text-sm font-medium text-primary hover:text-foreground">
-                    <Github size={18} aria-hidden="true" /> Explore the code <ArrowUpRight size={16} aria-hidden="true" />
-                </a>
-            </div>
-            <dl className="mt-10 grid grid-cols-2 gap-6 border-t pt-6 text-sm md:grid-cols-4">
-                <div><dt className="mb-2 text-xs uppercase tracking-widest text-subtle">Project</dt><dd>Capstone application</dd></div>
-                <div><dt className="mb-2 text-xs uppercase tracking-widest text-subtle">Dataset</dt><dd>8,600+ matches · 23 seasons</dd></div>
-                <div><dt className="mb-2 text-xs uppercase tracking-widest text-subtle">Built with</dt><dd>React · Python · NumPy</dd></div>
-                <div><dt className="mb-2 text-xs uppercase tracking-widest text-subtle">Delivery</dt><dd>Docker · Nginx</dd></div>
-            </dl>
-        </header>
+    <article className={caseStudyPage}>
+        <CaseStudyHeader
+            eyebrow="Capstone / Machine learning / Sports analytics"
+            title="Premier Predict"
+            intro="From raw match data to a clearer picture of the Premier League. A custom ML pipeline, brought to life in an interactive dashboard."
+            action={<a href="https://github.com/ec1s123/Capstone" target="_blank" rel="noopener noreferrer" className={linkUnderline}><Github size={18} aria-hidden="true" /> Explore the code <ArrowUpRight size={16} aria-hidden="true" /><span className="sr-only">(opens in a new tab)</span></a>}
+            metadata={[
+                ["Project", "Capstone application"],
+                ["Dataset", "8,600+ matches · 23 seasons"],
+                ["Built with", "React · Python · NumPy"],
+                ["Delivery", "Docker · Nginx"],
+            ]}
+        />
 
         <Screenshot screenshot={screenshots[0]} priority />
 

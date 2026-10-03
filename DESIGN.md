@@ -15,6 +15,13 @@ class strings. If something new is needed, add it here and in `src/components/ui
 - **Accessible by default.** Text meets WCAG AA in both themes, every interactive element shows
   `focusRing`, and external links say "(opens in a new tab)" to screen readers.
 
+## Brand
+
+- **No logo in the navbar.** Page links start at the left edge; profiles, Résumé, and the theme
+  toggle sit on the right. The name is carried by each page's eyebrow ("Adam Eccles / Career") and
+  the Home hero. On phones, "Menu" takes the left slot.
+- **Favicon:** `public/icon.png`.
+
 ## Color
 
 Defined in `src/index.css`. Light and dark values switch with the `.dark` class on `<html>`.
@@ -54,6 +61,8 @@ primary-colored period from `PageHeader` automatically, so don't type one.
 
 ## Layout
 
+- **Content column:** `shell` from `lib/styles`. The navbar, every page, and the footer use it, so
+  their left edges line up. Don't use Tailwind's `container` for new layout.
 - **Page wrapper:** `page` from `lib/styles` (`max-w-6xl`, `px-6 sm:px-10`, standard top and bottom
   padding). Every page except Home uses it.
 - **Below the page header:** start the first block with `mt-14 border-t pt-10 md:mt-20 md:pt-14`.
@@ -73,8 +82,12 @@ Shared React components live in `src/components/ui/`, shared class strings in `s
 | --- | --- | --- |
 | `PageHeader` | `ui/PageHeader.jsx` | The top of every page except Home and the case studies: eyebrow, title, lead, and optional children such as a button |
 | `SectionHeader` | `ui/SectionHeader.jsx` | A major section with an optional eyebrow, description, and "see more" link |
-| `HairlineList` + `HairlineItem` | `ui/HairlineList.jsx` | Any group of short titled items: role highlights, projects, press, "Beyond playing". Sets the column count from the item count so nothing sits alone in a row. Set `as` to the correct heading level. |
+| `HairlineList` + `HairlineItem` | `ui/HairlineList.jsx` | Any group of short titled items: role highlights, projects, press, "Beyond playing". Sets the column count from the item count so nothing sits alone in a row. Set `as` to the correct heading level, and `wide` on an item much longer than its siblings to give it a full row. |
 | `HairlineLink` | `ui/HairlineList.jsx` | A linked `HairlineItem` title. Use `to` for pages on this site and `href` for other sites. |
+| `FeaturedProject` | `ui/FeaturedProject.jsx` | The lead project on the Projects page: media left, details right, whole card links to the case study. |
+| `CaseStudyHeader` | `ui/CaseStudy.jsx` | Top of every `/projects/*` page: back link, eyebrow, title, intro, one headline action (`linkUnderline`), and four metadata items. Wrap the page in `caseStudyPage`. |
+| `CaseStudySection` | `ui/CaseStudy.jsx` | A case-study section: label ("01 / The problem") and title on the left, content on the right |
+| `NumberedList` | `ui/CaseStudy.jsx` | Steps that really are a sequence (pipeline stages). Don't number things that aren't ordered. |
 | `TagList` | `ui/TagList.jsx` | Tool and skill pills under a role or project |
 | `DateRange` | `ui/DateRange.jsx` | Any start–end date; renders "Present" when there's no end |
 | `CareerLogo` | `CareerLogo.jsx` | Organization logos (`compact` in lists) |
@@ -93,7 +106,17 @@ Shared React components live in `src/components/ui/`, shared class strings in `s
 - **A list of names** (teams, profiles, skills) → a plain list or `TagList`, no hairlines.
 - **A single highlighted figure** (Home stats, Premier Predict results) → a number in
   `text-primary` above a `text-xs text-subtle` label.
-- **Boxed cards** (fill, radius, shadow) → only for screenshots and form fields.
+- **Boxed cards** (fill, radius, shadow) → only for screenshots, form fields, and figures that
+  stand in for a screenshot (system diagrams, UI mockups with synthetic data). Caption every
+  figure, and label synthetic examples as synthetic.
+- **A project with no screenshots** (confidential work) → an HTML system diagram as the hero
+  image. See `ConversationIntent.jsx`.
+
+## Page structure
+
+- **Projects:** personal projects only: one featured project, then the rest. Work projects live
+  with their roles on the Career page (as highlights in `src/data/careers.js`, linked to a case
+  study with `caseStudy`), so they aren't repeated here.
 
 ## Content
 
@@ -107,6 +130,6 @@ Shared React components live in `src/components/ui/`, shared class strings in `s
 
 These still use their own markup and should move to the shared pieces when next touched:
 
-- Case-study pages (`PremierPredict.jsx`, `ProjectCaseStudy.jsx`) share a header layout that could
-  become a `CaseStudyHeader` component.
+- The case-study bodies in `PremierPredict.jsx` and `ProjectCaseStudy.jsx` still hand-write their
+  sections; move them to `CaseStudySection` and `NumberedList`.
 - The Home hero (`HeroSection.jsx`) is intentionally unique, but its eyebrow should use `eyebrow`.

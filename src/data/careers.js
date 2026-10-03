@@ -45,6 +45,8 @@ export const esportsPress = [
 // Tech roles, dates, and descriptions supplied in Adam's LinkedIn screenshots.
 // One entry per role, even at the same organization, so each role's work is visible.
 // Each role has an optional one-line `summary`, titled `highlights`, and `skills` (rendered as tags).
+// `wide: true` gives a long highlight a full row so it doesn't stretch one narrow column.
+// `caseStudy` links the highlight's title to its case-study page.
 export const techCareer = [
     {
         id: "auxiliary-digital", organization: "Auxiliary Digital", role: "Business Technical Analyst",
@@ -66,33 +68,42 @@ export const techCareer = [
         highlights: [
             {
                 title: "Workflow automation platform",
+                skills: ["Node.js", "TypeScript", "Playwright", "BullMQ", "Redis", "SQLite", "React"],
                 description: "Built a queue-driven platform with Node.js, Playwright, BullMQ, and Redis that combines API integrations, browser automation, and document processing. Each job runs in its own isolated workspace, with network retries, duplicate-request detection, and persistent progress tracking, all covered by unit, integration, and browser tests.",
             },
             {
                 title: "Secure data management API",
+                skills: ["TypeScript", "Express", "PostgreSQL", "Drizzle", "JWT", "Vitest"],
                 description: "Developed a modular TypeScript and PostgreSQL API with role-based permissions, refresh-token rotation, account lockout, and searchable field-level encryption. Added tamper-evident audit logging, transactional spreadsheet imports, and automated authorization and encryption tests.",
             },
             {
                 title: "Internal operations interface",
+                skills: ["Next.js", "TypeScript", "TanStack Table", "TanStack Query", "React Hook Form", "Zod"],
                 description: "Built a Next.js interface with reusable data tables (server pagination, multi-column sorting, advanced filters, URL-persisted state, and CSV export) and complex forms with schema validation, calculated fields, and debounced draft recovery.",
             },
             {
                 title: "Operational data and analytics API",
+                skills: ["TypeScript", "Express", "PostgreSQL", "BigQuery", "Vitest", "Cloud Build"],
                 description: "Developed a TypeScript API that pairs PostgreSQL with a reusable BigQuery adapter. It supports parameterized search, validated filtering and sorting, paginated responses, and streamed CSV exports, backed by structured logging and query-builder tests.",
             },
         ],
         skills: ["TypeScript", "Node.js", "Express", "React", "Next.js", "PostgreSQL", "Drizzle", "BigQuery", "Redis", "BullMQ", "Playwright", "Vitest", "Docker", "Google Cloud"],
     },
     {
-        id: "maryville-ai-engineer", organization: "Maryville University of Saint Louis", role: "AI Agent & Machine Learning Engineer",
+        id: "maryville-ai-engineer", organization: "Maryville University of Saint Louis", shortName: "Maryville University", role: "AI Agent & Machine Learning Engineer",
         start: "2025-09", end: "2026-05", source: "linkedin",
         employmentType: "Work study", location: "St. Louis, Missouri · Hybrid",
         highlights: [
+            {
+                title: "Conversation intent review platform", wide: true,
+                caseStudy: "/projects/conversation-intent-review",
+                description: "Built an end-to-end conversation classification platform with Python, FastAPI, scikit-learn, and React/TypeScript. Connected batch ingestion and model inference to confidence-based human review, context-aware relabeling, and exports for iterative training.",
+                skills: ["Python", "scikit-learn", "FastAPI", "React", "TypeScript"],
+            },
             { title: "Course AI agents", description: "Built course-specific AI agents that answer with links to their sources." },
-            { title: "Chat classification pipeline", description: "Built a machine learning pipeline to classify student chats and analyze how course resources are used." },
             { title: "Answer quality", description: "Evaluated prompts, source relevance, and citation accuracy." },
         ],
-        skills: ["AI agents", "RAG", "Machine learning", "Text classification", "Evaluation"],
+        skills: ["AI agents", "RAG", "Python", "scikit-learn", "FastAPI", "React", "TypeScript", "Text classification", "Evaluation"],
     },
     {
         id: "neuralseek", organization: "NeuralSeek", role: "Agentic AI Intern",
@@ -107,7 +118,7 @@ export const techCareer = [
         skills: ["Agentic AI", "NeuralSeek", "Competitive analysis"],
     },
     {
-        id: "maryville-ai-research", organization: "Maryville University of Saint Louis", role: "AI Research Intern",
+        id: "maryville-ai-research", organization: "Maryville University of Saint Louis", shortName: "Maryville University", role: "AI Research Intern",
         start: "2025-01", end: "2025-09", source: "linkedin",
         employmentType: "Internship", location: "St. Louis, Missouri · Hybrid",
         highlights: [

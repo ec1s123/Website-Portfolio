@@ -100,7 +100,7 @@ Most changes are data edits; the pages read from these files.
 | Tech roles, esports teams, press articles | `src/data/careers.js` |
 | Organization logos | Add the file to `public/logos/`, map it in `src/data/careerLogos.js`, note the source in `public/logos/SOURCES.md` |
 | Project cards (Home and Projects pages) | `src/data/projects.js` |
-| Case-study pages | `src/data/projectCaseStudies.js` (Premier Predict has its own page: `src/pages/PremierPredict.jsx`) |
+| Case-study pages | `src/data/projectCaseStudies.js` for open-source projects. Premier Predict and the Conversation Intent Review Platform (a work project) have their own pages in `src/pages/`. |
 | Featured projects on Home | `featuredProjects` in `src/components/HomeSections.jsx` |
 | Esports stats on Home | `esportsStats` in `src/components/HomeSections.jsx` |
 | Social and professional profiles | `src/data/socials.js` |
