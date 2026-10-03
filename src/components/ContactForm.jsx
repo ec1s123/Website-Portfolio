@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { CONTACT_LIMITS, validateContact } from "../lib/contactValidation";
-import { focusRing } from "../lib/styles";
+import { buttonPrimary, focusRing } from "../lib/styles";
 
 const fields = [
     { name: "name", label: "Name", type: "text", autoComplete: "name" },
@@ -72,7 +72,7 @@ export const ContactForm = () => {
             <div className="rounded-md border border-primary/30 bg-primary/5 p-6 sm:p-8">
                 <CheckCircle2 size={28} className="text-primary" aria-hidden="true" />
                 <h3 ref={confirmationRef} tabIndex={-1} className="mt-4 text-2xl font-semibold tracking-tight outline-none">Thanks, {sender}. Message sent.</h3>
-                <p className="mt-2 leading-relaxed text-foreground/70">It’s on its way to my inbox, and I’ll reply to the email address you gave.</p>
+                <p className="mt-2 leading-relaxed text-muted">It’s on its way to my inbox, and I’ll reply to the email address you gave.</p>
                 <button type="button" onClick={() => setStatus("idle")} className={`mt-6 cursor-pointer rounded-sm text-sm font-medium text-primary hover:underline ${focusRing}`}>
                     Send another message
                 </button>
@@ -92,7 +92,7 @@ export const ContactForm = () => {
                     <div key={name}>
                         <label htmlFor={`contact-${name}`} className="text-sm font-medium">{label}</label>
                         {multiline ? <textarea {...shared} rows={6} className={`${inputClass} resize-y`} /> : <input {...shared} type={type} autoComplete={autoComplete} />}
-                        {hint && !error && <p id={`${name}-hint`} className="mt-2 text-xs text-foreground/55">{hint}</p>}
+                        {hint && !error && <p id={`${name}-hint`} className="mt-2 text-xs text-subtle">{hint}</p>}
                         {error && <p id={`${name}-error`} className={errorClass}>{error}</p>}
                     </div>
                 );
@@ -105,7 +105,7 @@ export const ContactForm = () => {
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
-                <button type="submit" disabled={sending} className={`cosmic-button inline-flex min-h-12 cursor-pointer items-center gap-2 disabled:cursor-wait disabled:opacity-70 ${focusRing}`}>
+                <button type="submit" disabled={sending} className={`${buttonPrimary} cursor-pointer disabled:cursor-wait disabled:opacity-70`}>
                     {sending ? <Loader2 size={17} className="animate-spin" aria-hidden="true" /> : <Send size={17} aria-hidden="true" />}
                     {sending ? "Sending…" : "Send message"}
                 </button>

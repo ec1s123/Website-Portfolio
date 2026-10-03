@@ -75,13 +75,21 @@ src/
   App.jsx               Route definitions
   index.css             Theme colors, animations, starfield and utility classes
   pages/                Route-level pages (Home, Careers, case studies, 404)
-  components/           Sections and shared UI (navbar, footer, cards, contact form…)
+  components/           Page sections (navbar, footer, careers, contact form…)
+    ui/                 Shared design-system components (see DESIGN.md)
   data/                 Site content — edit these to update the site (see below)
   lib/                  Shared helpers: styles, contact validation, starfield, cn()
+DESIGN.md               Design system: colors, type scale, layout, shared components
+CLAUDE.md               Working rules for AI coding assistants
 index.html              Meta description, Open Graph/Twitter tags, structured data
 vercel.json             Security headers, caching rules, SPA rewrite
 vite.config.js          Vite plugins, including the sitemap generator
 ```
+
+## Design system
+
+UI rules live in [`DESIGN.md`](DESIGN.md): color tokens, type scale, layout, and the shared
+components in `src/components/ui/`. Check it before adding or restyling a page.
 
 ## Updating content
 

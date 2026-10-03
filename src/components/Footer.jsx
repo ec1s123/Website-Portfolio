@@ -6,7 +6,7 @@ import { resumeUrl } from "../data/socials";
 const textLink = "inline-flex min-h-10 items-center gap-1.5 rounded-sm transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
 
 export const Footer = () => (
-    <footer className="border-t px-4 py-6 text-sm text-foreground/65">
+    <footer className="border-t px-4 py-6 text-sm text-muted">
         <div className="container flex flex-col-reverse items-center justify-between gap-4 sm:flex-row">
             <p>&copy; {new Date().getFullYear()} Adam Eccles, All Rights Reserved.</p>
             <nav aria-label="Contact and profiles" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">

@@ -2,6 +2,8 @@ import { EsportsCareer } from "../components/EsportsCareer";
 import { TechCareer } from "../components/TechCareer";
 import { Link, useSearchParams } from "react-router-dom";
 import { ArrowUpRight, BriefcaseBusiness, Gamepad2 } from "lucide-react";
+import { PageHeader } from "../components/ui/PageHeader";
+import { linkPrimary, page } from "../lib/styles";
 
 export const Careers = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -15,30 +17,30 @@ export const Careers = () => {
     };
 
     return (
-        <article className="mx-auto max-w-6xl px-6 pb-20 pt-16 text-left sm:px-10 md:pb-28 md:pt-24">
-            <header>
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Adam Eccles / Career</p>
-                <h1 className="max-w-4xl text-5xl font-semibold tracking-tight sm:text-7xl lg:text-8xl">Two paths.<br />One drive<span className="text-primary">.</span></h1>
-                <p className="mt-8 max-w-2xl text-xl leading-relaxed text-foreground/70">From competing as ec1s to building in technology. Explore the teams, roles, and experiences along the way.</p>
-            </header>
+        <article className={page}>
+            <PageHeader
+                eyebrow="Adam Eccles / Career"
+                title={<>Two paths.<br />One drive</>}
+                lead="From competing as ec1s to building in technology. Explore the teams, roles, and experiences along the way."
+            />
 
             <div className="my-12 flex flex-wrap items-center justify-between gap-6 border-b pb-8 md:my-16">
                 <div role="group" aria-label="Choose career timeline" className="inline-flex gap-1 rounded-full border bg-card p-1.5">
                     {[{ id: "tech", label: "Tech" }, { id: "esports", label: "Esports" }].map(({ id, label }) => (
-                        <button key={id} type="button" aria-pressed={track === id} aria-controls="career-timeline" onClick={() => selectTrack(id)} className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-8 ${track === id ? "bg-primary text-primary-foreground" : "text-foreground/65 hover:bg-primary/10 hover:text-foreground"}`}>
+                        <button key={id} type="button" aria-pressed={track === id} aria-controls="career-timeline" onClick={() => selectTrack(id)} className={`inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-8 ${track === id ? "bg-primary text-primary-foreground" : "text-muted hover:bg-primary/10 hover:text-foreground"}`}>
                             {id === "tech" ? <BriefcaseBusiness size={17} aria-hidden="true" /> : <Gamepad2 size={17} aria-hidden="true" />}{label}
                         </button>
                     ))}
                 </div>
-                <p className="text-xs uppercase tracking-widest text-foreground/55">{isEsports ? "Teams & career highlights" : "Roles & career highlights"}</p>
+                <p className="text-xs uppercase tracking-widest text-subtle">{isEsports ? "Teams & career highlights" : "Roles & career highlights"}</p>
             </div>
 
             {isEsports ? <EsportsCareer /> : <TechCareer />}
 
             {!isEsports && (
                 <div className="mt-16 flex flex-wrap items-center justify-between gap-5 border-t pt-8">
-                    <p className="text-sm text-foreground/65">See the technical work behind my portfolio.</p>
-                    <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">Explore projects <ArrowUpRight size={16} aria-hidden="true" /></Link>
+                    <p className="text-sm text-muted">See the technical work behind my portfolio.</p>
+                    <Link to="/projects" className={linkPrimary}>Explore projects <ArrowUpRight size={16} aria-hidden="true" /></Link>
                 </div>
             )}
         </article>

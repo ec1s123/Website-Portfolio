@@ -14,7 +14,7 @@ const navItems = [
     { name: "Contact", to: "/contact" },
 ];
 const resumeClass = "inline-flex min-h-10 items-center gap-1.5 rounded-full border border-primary/40 px-4 text-sm font-medium text-primary transition-colors hover:bg-primary/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
-const linkClass = ({ isActive }) => `rounded-sm transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 ${isActive ? "text-primary font-semibold" : "text-foreground/80"}`;
+const linkClass = ({ isActive }) => `rounded-sm transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 ${isActive ? "text-primary font-semibold" : "text-muted"}`;
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

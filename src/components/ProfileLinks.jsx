@@ -10,7 +10,7 @@ export const ProfileLinks = ({ className, size = 20 }) => (
             const Icon = icons[name];
             return (
                 <li key={url}>
-                    <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`${name} (opens in a new tab)`} className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground/70 transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                    <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`${name} (opens in a new tab)`} className="inline-flex h-10 w-10 items-center justify-center rounded-full text-muted transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
                         <Icon size={size} aria-hidden="true" />
                     </a>
                 </li>

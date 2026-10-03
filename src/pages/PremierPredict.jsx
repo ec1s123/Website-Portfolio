@@ -75,7 +75,7 @@ const Screenshot = ({ screenshot, priority = false }) => (
                 className="h-auto w-full"
             />
         </a>
-        <figcaption className="mt-4 flex flex-wrap items-start justify-between gap-2 text-xs leading-relaxed text-foreground/60">
+        <figcaption className="mt-4 flex flex-wrap items-start justify-between gap-2 text-xs leading-relaxed text-subtle">
             <span>{screenshot.caption}</span>
             <span className="inline-flex items-center gap-1">Select image to enlarge <ArrowUpRight size={14} aria-hidden="true" /></span>
         </figcaption>
@@ -84,13 +84,13 @@ const Screenshot = ({ screenshot, priority = false }) => (
 
 export const PremierPredict = () => (
     <article className="mx-auto max-w-6xl px-6 pb-20 pt-10 text-left sm:px-10 md:pb-28 md:pt-16">
-        <Link to="/projects" className="inline-block text-sm text-foreground/60 transition-colors hover:text-primary">← All projects</Link>
+        <Link to="/projects" className="inline-block text-sm text-subtle transition-colors hover:text-primary">← All projects</Link>
 
         <header className="pb-10 pt-12 md:pb-14 md:pt-20">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Capstone / Machine learning / Sports analytics</p>
             <h1 className="text-5xl font-semibold tracking-tight sm:text-7xl lg:text-8xl">Premier Predict<span className="text-primary">.</span></h1>
             <div className="mt-8 grid items-start gap-8 md:grid-cols-[1fr_auto] md:gap-16">
-                <p className="max-w-2xl text-xl leading-relaxed text-foreground/75 md:text-2xl">
+                <p className="max-w-2xl text-xl leading-relaxed text-muted md:text-2xl">
                     From raw match data to a clearer picture of the Premier League.
                     A custom ML pipeline, brought to life in an interactive dashboard.
                 </p>
@@ -99,10 +99,10 @@ export const PremierPredict = () => (
                 </a>
             </div>
             <dl className="mt-10 grid grid-cols-2 gap-6 border-t pt-6 text-sm md:grid-cols-4">
-                <div><dt className="mb-2 text-xs uppercase tracking-widest text-foreground/50">Project</dt><dd>Capstone application</dd></div>
-                <div><dt className="mb-2 text-xs uppercase tracking-widest text-foreground/50">Dataset</dt><dd>8,600+ matches · 23 seasons</dd></div>
-                <div><dt className="mb-2 text-xs uppercase tracking-widest text-foreground/50">Built with</dt><dd>React · Python · NumPy</dd></div>
-                <div><dt className="mb-2 text-xs uppercase tracking-widest text-foreground/50">Delivery</dt><dd>Docker · Nginx</dd></div>
+                <div><dt className="mb-2 text-xs uppercase tracking-widest text-subtle">Project</dt><dd>Capstone application</dd></div>
+                <div><dt className="mb-2 text-xs uppercase tracking-widest text-subtle">Dataset</dt><dd>8,600+ matches · 23 seasons</dd></div>
+                <div><dt className="mb-2 text-xs uppercase tracking-widest text-subtle">Built with</dt><dd>React · Python · NumPy</dd></div>
+                <div><dt className="mb-2 text-xs uppercase tracking-widest text-subtle">Delivery</dt><dd>Docker · Nginx</dd></div>
             </dl>
         </header>
 
@@ -113,7 +113,7 @@ export const PremierPredict = () => (
                 <p className="mb-3 text-xs font-medium text-primary">01 / THE PROJECT</p>
                 <h2 id="overview-heading" className="text-3xl font-semibold tracking-tight">Turning probabilities<br className="hidden md:block" /> into perspective.</h2>
             </div>
-            <div className="space-y-5 text-base leading-relaxed text-foreground/75 md:text-lg">
+            <div className="space-y-5 text-base leading-relaxed text-muted md:text-lg">
                 <p>I built Premier Predict for my capstone to connect the full machine learning workflow to a usable product: cleaning historical data, engineering features, training a classifier, and presenting the results in React.</p>
                 <p>The dashboard makes those probabilities explorable. Users can review match outcomes, compare model expectations with bookmaker markets, and examine where actual league standings diverge from expected points.</p>
             </div>
@@ -122,14 +122,14 @@ export const PremierPredict = () => (
         <section aria-labelledby="results-heading" className="border-y py-10 md:py-14">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
                 <h2 id="results-heading" className="text-2xl font-semibold tracking-tight">Measured on unseen matches.</h2>
-                <p className="text-xs uppercase tracking-widest text-foreground/55">Chronological holdout · 332 matches</p>
+                <p className="text-xs uppercase tracking-widest text-subtle">Chronological holdout · 332 matches</p>
             </div>
             <dl className="mt-10 grid gap-8 sm:grid-cols-3">
-                <div><dt className="mb-3 text-sm text-foreground/65">Accuracy gain over baseline</dt><dd className="text-4xl font-semibold tracking-tight text-primary lg:text-5xl">+2.4 <span className="text-xl">pp</span></dd></div>
-                <div><dt className="mb-3 text-sm text-foreground/65">Held-out model accuracy</dt><dd className="text-4xl font-semibold tracking-tight lg:text-5xl">48.2%</dd></div>
-                <div><dt className="mb-3 text-sm text-foreground/65">Log loss · baseline → model</dt><dd className="text-3xl font-semibold tracking-tight lg:text-4xl">1.069 → 1.037</dd></div>
+                <div><dt className="mb-3 text-sm text-muted">Accuracy gain over baseline</dt><dd className="text-4xl font-semibold tracking-tight text-primary lg:text-5xl">+2.4 <span className="text-xl">pp</span></dd></div>
+                <div><dt className="mb-3 text-sm text-muted">Held-out model accuracy</dt><dd className="text-4xl font-semibold tracking-tight lg:text-5xl">48.2%</dd></div>
+                <div><dt className="mb-3 text-sm text-muted">Log loss · baseline → model</dt><dd className="text-3xl font-semibold tracking-tight lg:text-4xl">1.069 → 1.037</dd></div>
             </dl>
-            <p className="mt-8 max-w-2xl text-sm leading-relaxed text-foreground/65">Outperformed the team/date baseline on both accuracy and log loss, with preprocessing fit only on training data and post-match statistics excluded from the model inputs.</p>
+            <p className="mt-8 max-w-2xl text-sm leading-relaxed text-muted">Outperformed the team/date baseline on both accuracy and log loss, with preprocessing fit only on training data and post-match statistics excluded from the model inputs.</p>
         </section>
 
         <section aria-labelledby="product-heading" className="py-16 md:py-24">
@@ -156,8 +156,8 @@ export const PremierPredict = () => (
             <ol className="space-y-8">
                 {highlights.map(({ title, description }, index) => (
                     <li key={title} className="grid grid-cols-[1.5rem_1fr] gap-4">
-                        <span className="pt-1 text-xs text-foreground/45">0{index + 1}</span>
-                        <div><h3 className="mb-2 text-lg font-medium">{title}</h3><p className="text-sm leading-relaxed text-foreground/70">{description}</p></div>
+                        <span className="pt-1 text-xs text-subtle">0{index + 1}</span>
+                        <div><h3 className="mb-2 text-lg font-medium">{title}</h3><p className="text-sm leading-relaxed text-muted">{description}</p></div>
                     </li>
                 ))}
             </ol>
@@ -165,7 +165,7 @@ export const PremierPredict = () => (
 
         <section aria-labelledby="evaluation-heading" className="grid gap-8 border-t py-12 md:grid-cols-[1fr_2fr] md:gap-16">
             <h2 id="evaluation-heading" className="text-xl font-semibold">Evaluation context</h2>
-            <div className="space-y-4 text-sm leading-relaxed text-foreground/65">
+            <div className="space-y-4 text-sm leading-relaxed text-muted">
                 <p>The custom classifier achieved 48.2% accuracy, within 0.9 percentage points of the bookmaker benchmark’s 49.1%, compared with 45.8% for the team/date baseline on the same held-out evaluation.</p>
                 <p>Historical dashboard predictions come from a model refit on all available matches, so displayed dashboard accuracy is separate from these held-out results. Upcoming fixtures use a separate heuristic based on team profiles and form.</p>
             </div>

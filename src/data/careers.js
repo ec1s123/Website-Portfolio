@@ -43,39 +43,78 @@ export const esportsPress = [
 
 // Month precision is intentional: some early roster dates are not fully recorded.
 // Tech roles, dates, and descriptions supplied in Adam's LinkedIn screenshots.
+// One entry per role, even at the same organization, so each role's work is visible.
+// Each role has an optional one-line `summary`, titled `highlights`, and `skills` (rendered as tags).
 export const techCareer = [
     {
         id: "auxiliary-digital", organization: "Auxiliary Digital", role: "Business Technical Analyst",
         start: "2026-05", end: null, source: "linkedin",
         employmentType: "Full-time", location: "St. Louis, Missouri · On-site",
-        description: "Combine business analysis with hands-on software development across the frontend and backend. Gather requirements, write user stories, clarify product behavior, and guide implementation with engineers while contributing code to deliver useful products.",
+        summary: "Combine business analysis with hands-on software development across the frontend and backend.",
+        highlights: [
+            { title: "Requirements & product behavior", description: "Gather requirements, write user stories, and clarify how the product should behave." },
+            { title: "Implementation", description: "Guide implementation with engineers while contributing frontend and backend code to deliver useful products." },
+        ],
+        skills: ["Requirements", "User stories", "Frontend", "Backend"],
     },
     {
         id: "automate-army", organization: "Automate Army", role: "Software Engineer",
         start: "2026-01", end: "2026-05", source: "linkedin",
         employmentType: "Internship", location: "United States · Remote",
-        description: "Built a typed operations platform with a secure TypeScript/Express API, PostgreSQL/Drizzle data layer, and BigQuery analytics. Delivered Next.js reporting forms with validation and draft recovery, supported by structured logging, Vitest tests, and Docker.",
-    },
-    {
-        id: "maryville-ai-engineer", organization: "Maryville University of Saint Louis", role: "AI research & engineering",
-        start: "2025-01", end: "2026-05", source: "linkedin",
-        location: "St. Louis, Missouri · Hybrid",
-        progression: [
+        summary: "Built internal web applications and automation systems across four projects, using TypeScript, React, Node.js, and SQL.",
+        // Anonymized: no client names, industries, or data. Details are limited to what the code shows.
+        highlights: [
             {
-                role: "AI Research Intern", start: "2025-01", end: "2025-09", employmentType: "Internship",
-                description: "Built AI learning tools and assistants with faculty, including LLM bots for SOC analyst training and graduate nursing decision-making.",
+                title: "Workflow automation platform",
+                description: "Built a queue-driven platform with Node.js, Playwright, BullMQ, and Redis that combines API integrations, browser automation, and document processing. Each job runs in its own isolated workspace, with network retries, duplicate-request detection, and persistent progress tracking, all covered by unit, integration, and browser tests.",
             },
             {
-                role: "AI Agent & Machine Learning Engineer", start: "2025-09", end: "2026-05", employmentType: "Work study",
-                description: "Built course-specific AI agents with source-linked answers and an ML pipeline to classify student chats and analyze resource usage. Evaluated prompts, source relevance, and citation accuracy.",
+                title: "Secure data management API",
+                description: "Developed a modular TypeScript and PostgreSQL API with role-based permissions, refresh-token rotation, account lockout, and searchable field-level encryption. Added tamper-evident audit logging, transactional spreadsheet imports, and automated authorization and encryption tests.",
+            },
+            {
+                title: "Internal operations interface",
+                description: "Built a Next.js interface with reusable data tables (server pagination, multi-column sorting, advanced filters, URL-persisted state, and CSV export) and complex forms with schema validation, calculated fields, and debounced draft recovery.",
+            },
+            {
+                title: "Operational data and analytics API",
+                description: "Developed a TypeScript API that pairs PostgreSQL with a reusable BigQuery adapter. It supports parameterized search, validated filtering and sorting, paginated responses, and streamed CSV exports, backed by structured logging and query-builder tests.",
             },
         ],
+        skills: ["TypeScript", "Node.js", "Express", "React", "Next.js", "PostgreSQL", "Drizzle", "BigQuery", "Redis", "BullMQ", "Playwright", "Vitest", "Docker", "Google Cloud"],
+    },
+    {
+        id: "maryville-ai-engineer", organization: "Maryville University of Saint Louis", role: "AI Agent & Machine Learning Engineer",
+        start: "2025-09", end: "2026-05", source: "linkedin",
+        employmentType: "Work study", location: "St. Louis, Missouri · Hybrid",
+        highlights: [
+            { title: "Course AI agents", description: "Built course-specific AI agents that answer with links to their sources." },
+            { title: "Chat classification pipeline", description: "Built a machine learning pipeline to classify student chats and analyze how course resources are used." },
+            { title: "Answer quality", description: "Evaluated prompts, source relevance, and citation accuracy." },
+        ],
+        skills: ["AI agents", "RAG", "Machine learning", "Text classification", "Evaluation"],
     },
     {
         id: "neuralseek", organization: "NeuralSeek", role: "Agentic AI Intern",
         start: "2025-08", end: "2025-09", source: "linkedin",
         employmentType: "Internship", location: "Remote",
-        description: "Completed NeuralSeek’s L1–L3 AI certifications and built and deployed a custom no-code AI agent. Analyzed competing AI platforms, contributed to cross-functional go-to-market initiatives, and presented a capstone demonstrating practical AI deployment.",
+        highlights: [
+            { title: "Custom AI agent", description: "Built and deployed a custom no-code AI agent." },
+            { title: "Certifications", description: "Completed NeuralSeek’s L1–L3 AI certifications." },
+            { title: "Market research", description: "Analyzed competing AI platforms and contributed to cross-functional go-to-market initiatives." },
+            { title: "Capstone", description: "Presented a capstone demonstrating practical AI deployment." },
+        ],
+        skills: ["Agentic AI", "NeuralSeek", "Competitive analysis"],
+    },
+    {
+        id: "maryville-ai-research", organization: "Maryville University of Saint Louis", role: "AI Research Intern",
+        start: "2025-01", end: "2025-09", source: "linkedin",
+        employmentType: "Internship", location: "St. Louis, Missouri · Hybrid",
+        highlights: [
+            { title: "AI learning tools", description: "Built AI learning tools and assistants with faculty." },
+            { title: "Training assistants", description: "Created LLM bots for SOC analyst training and for graduate nursing decision-making." },
+        ],
+        skills: ["LLMs", "AI assistants", "Research"],
     },
 ];
 

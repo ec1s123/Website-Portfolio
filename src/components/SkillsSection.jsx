@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { HairlineItem, HairlineLink, HairlineList } from "./ui/HairlineList";
+import { PageHeader } from "./ui/PageHeader";
+import { page } from "../lib/styles";
 
 const skillGroups = [
     {
@@ -8,23 +9,23 @@ const skillGroups = [
     },
     {
         title: "Backend & databases",
-        skills: ["Node.js", "Express.js", "Java", "SQL", "PostgreSQL", "Drizzle ORM"],
+        skills: ["Node.js", "Express.js", "Java", "SQL", "PostgreSQL", "SQLite", "Drizzle ORM", "Redis", "BullMQ"],
     },
     {
         title: "Frontend",
-        skills: ["TypeScript", "JavaScript", "React", "Next.js", "HTML/CSS", "Tailwind CSS", "React Hook Form", "TanStack Query (React Query)", "Axios"],
+        skills: ["TypeScript", "JavaScript", "React", "Next.js", "HTML/CSS", "Tailwind CSS", "shadcn/ui", "React Hook Form", "TanStack Query (React Query)", "TanStack Table", "Zustand", "Axios"],
     },
     {
         title: "Authentication & validation",
-        skills: ["JWT", "Role-based access control (RBAC)", "bcrypt", "Zod"],
+        skills: ["JWT", "Refresh token rotation", "Role-based access control (RBAC)", "bcrypt", "Field-level encryption", "Zod"],
     },
     {
         title: "Testing & observability",
-        skills: ["Vitest", "Winston"],
+        skills: ["Vitest", "Supertest", "Playwright", "Bruno", "Winston", "Pino"],
     },
     {
         title: "Cloud & development tools",
-        skills: ["Git", "Docker", "Google Cloud", "BigQuery", "AWS"],
+        skills: ["Git", "Docker", "Google Cloud", "Cloud Build", "BigQuery", "AWS"],
     },
 ];
 
@@ -50,53 +51,38 @@ const examples = [
 ];
 
 export const SkillsSection = () => (
-    <section id="skills" aria-labelledby="skills-title" className="relative px-4 py-24">
-        <div className="container mx-auto max-w-5xl">
-            <header className="mx-auto mb-12 max-w-2xl text-center">
-                <h1 id="skills-title" className="mb-4 text-3xl font-bold md:text-4xl">
-                    Technologies <span className="text-primary">I’ve used</span>
-                </h1>
-                <p className="text-base leading-relaxed text-foreground/75">
-                    Languages, frameworks, and tools I’ve used in professional work and projects
-                    across software development, machine learning, and data analytics.
-                </p>
-            </header>
+    <article className={page}>
+        <PageHeader
+            eyebrow="Adam Eccles / Skills"
+            title="Technologies I’ve used"
+            lead="Languages, frameworks, and tools from professional work and projects across software development, machine learning, and data analytics."
+        />
 
-            <div className="divide-y divide-border text-left">
-                {skillGroups.map(({ title, skills }) => (
-                    <section key={title} className="grid gap-4 py-7 first:pt-0 md:grid-cols-[15rem_1fr] md:gap-10">
-                        <h2 className="text-base font-semibold leading-7">{title}</h2>
-                        <ul className="flex flex-wrap gap-x-6 gap-y-2" aria-label={title}>
-                            {skills.map((skill) => (
-                                <li key={skill} className="text-base leading-7 text-foreground/75">
-                                    {skill}
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
-                ))}
-            </div>
-
-            <section aria-labelledby="skills-projects-title" className="mt-12 text-left">
-                <h2 id="skills-projects-title" className="text-xl font-semibold">Applied in projects</h2>
-                <p className="mt-2 text-sm leading-relaxed text-foreground/75">
-                    See how I’ve used these technologies, with implementation details, results, and source code.
-                </p>
-                <div className="mt-6 grid gap-6 md:grid-cols-3">
-                    {examples.map(({ title, path, description, technologies }) => (
-                        <article key={path} className="border-t border-primary/30 pt-5">
-                            <h3 className="font-semibold">
-                                <Link to={path} className="inline-flex items-start gap-2 rounded-sm transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
-                                    {title}
-                                    <ArrowUpRight size={17} className="mt-1 shrink-0 text-primary" aria-hidden="true" />
-                                </Link>
-                            </h3>
-                            <p className="mt-2 text-sm leading-relaxed text-foreground/75">{description}</p>
-                            <p className="mt-3 text-xs font-medium leading-relaxed text-foreground/65">{technologies}</p>
-                        </article>
-                    ))}
-                </div>
-            </section>
+        <div className="mt-14 divide-y border-t md:mt-20">
+            {skillGroups.map(({ title, skills }) => (
+                <section key={title} aria-labelledby={`skills-${title}`} className="grid gap-4 py-8 md:grid-cols-[12rem_1fr] md:gap-10">
+                    <h2 id={`skills-${title}`} className="font-semibold leading-7">{title}</h2>
+                    <ul aria-label={title} className="flex flex-wrap gap-x-6 gap-y-2">
+                        {skills.map((skill) => <li key={skill} className="leading-7 text-muted">{skill}</li>)}
+                    </ul>
+                </section>
+            ))}
         </div>
-    </section>
+
+        <section aria-labelledby="skills-projects-heading" className="mt-8 border-t pt-10">
+            <h2 id="skills-projects-heading" className="text-3xl font-semibold tracking-tight">Applied in projects</h2>
+            <p className="mb-8 mt-2 text-sm text-muted">See how I’ve used these technologies, with implementation details, results, and source code.</p>
+            <HairlineList>
+                {examples.map(({ title, path, description, technologies }) => (
+                    <HairlineItem
+                        key={path}
+                        title={<HairlineLink to={path}>{title}</HairlineLink>}
+                        meta={technologies}
+                    >
+                        {description}
+                    </HairlineItem>
+                ))}
+            </HairlineList>
+        </section>
+    </article>
 );

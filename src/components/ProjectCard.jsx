@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ExternalLink, Github } from "lucide-react";
 import { cardLink } from "../lib/styles";
 
-const iconLink = "relative z-10 inline-flex h-9 w-9 items-center justify-center rounded-full text-foreground/60 transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+const iconLink = "relative z-10 inline-flex h-9 w-9 items-center justify-center rounded-full text-subtle transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
 
 // `detailed` adds the category eyebrow plus source and post links.
 export const ProjectCard = ({ project, detailed = false }) => {
@@ -21,9 +21,9 @@ export const ProjectCard = ({ project, detailed = false }) => {
                 </h3>
                 {label && <span className="rounded-full border border-primary/40 px-2.5 py-0.5 text-xs font-medium text-primary">{label}</span>}
             </div>
-            <p className="mt-2 text-sm leading-relaxed text-foreground/70">{description}</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
             <div className="mt-auto flex items-end justify-between gap-4 pt-4">
-                <p className="text-xs font-medium leading-relaxed text-foreground/60">
+                <p className="text-xs font-medium leading-relaxed text-subtle">
                     {tags.map((tag, index) => <Fragment key={tag}>{index > 0 && " · "}<span className="whitespace-nowrap">{tag}</span></Fragment>)}
                 </p>
                 {detailed && (
