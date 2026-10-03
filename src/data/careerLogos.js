@@ -4,7 +4,7 @@ const maryville = logo("maryville.png");
 const maryvilleEsports = logo("maryville-esports.png");
 
 export const careerLogos = {
-    "auxiliary-digital": logo("auxiliary-digital.png", true),
+    "auxiliary-digital": logo("auxiliary-digital.svg"),
     "automate-army": logo("automate-army.svg"),
     "maryville-ai-engineer": maryville,
     "maryville-ai-research": maryville,

@@ -1,19 +1,19 @@
-import { projectCaseStudies } from "../data/projectCaseStudies";
+import { pageTitles, siteUrl } from "../data/site";
 import { useEffect, useRef } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { StarBackground } from "./StarBackground";
 
-const titles = {
-    ...Object.fromEntries(projectCaseStudies.map((project) => [`/projects/${project.slug}`, project.title])),
-    "/": "Software Engineer",
-    "/about": "About",
-    "/careers": "Career",
-    "/skills": "Skills",
-    "/projects": "Projects",
-    "/projects/premier-predict": "Premier Predict — Capstone",
-    "/contact": "Contact",
+const setCanonical = (pathname) => {
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!pageTitles[pathname]) return link?.remove();
+    if (!link) {
+        link = document.createElement("link");
+        link.rel = "canonical";
+        document.head.append(link);
+    }
+    link.href = `${siteUrl}${pathname}`;
 };
 
 export const SiteLayout = () => {
@@ -25,7 +25,8 @@ export const SiteLayout = () => {
         : null;
 
     useEffect(() => {
-        document.title = `Adam Eccles | ${titles[pathname] || "Page not found"}`;
+        document.title = `Adam Eccles | ${pageTitles[pathname] || "Page not found"}`;
+        setCanonical(pathname);
         window.scrollTo({ top: 0, left: 0, behavior: "instant" });
         mainRef.current?.focus({ preventScroll: true });
     }, [pathname]);

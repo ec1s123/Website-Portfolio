@@ -9,7 +9,7 @@ Liquipedia profile pages were used as the career references. Direct downloads we
 | `100thieves.png` | https://owcdn.net/img/603c00d5c5a08.png |
 | `automate-army.svg` | https://www.automatearmy.com/favicon.svg |
 | `endpoint.png` | https://upload.wikimedia.org/wikipedia/commons/f/fa/Endpoint_Esports.png |
-| `auxiliary-digital.png` | https://www.auxiliary.digital/favicon.png |
+| `auxiliary-digital.svg` | Vector trace of the mark in the Auxiliary Digital logo image Adam supplied (2026-10-02); wordmark omitted for the square tile |
 | `fierce.png` | https://liquipedia.net/commons/images/e/e5/FierceEsports_Grey_Square.png |
 | `fish123.png` | https://owcdn.net/img/5eb5711b4c642.png |
 | `fnatic.png` | https://owcdn.net/img/62a40cc2b5e29.png |

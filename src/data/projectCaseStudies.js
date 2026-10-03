@@ -240,9 +240,10 @@ export const projectCaseStudies = [
             "Python",
             "pandas"
         ],
-        "image": "/projects/Formula1_pace_predictor.png",
+        "image": "/projects/formula1-pace-predictor-1500.webp",
+        "thumbnail": "/projects/formula1-pace-predictor-800.webp",
         "hero": {
-            "src": "/projects/Formula1_pace_predictor.png",
+            "src": "/projects/formula1-pace-predictor-1500.webp",
             "alt": "Formula 1 car on track, illustrating the race-pace modeling project.",
             "caption": "A modeling experiment focused on the 2025 Canadian Grand Prix, using historical race and qualifying data.",
             "width": 1500,

@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { projectCaseStudies } from "../data/projectCaseStudies";
 import { ArrowRight, ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import { PremierPredictProject } from "./PremierPredictProject";
+import { professionalProfiles } from "../data/socials";
+
+const githubUrl = professionalProfiles.find((profile) => profile.name === "GitHub").url;
 
 export const ProjectsSection = () => {
     return (
@@ -11,7 +14,7 @@ export const ProjectsSection = () => {
                     Featured <span className="text-primary">Projects</span>
                 </h1>
 
-                <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+                <p className="text-center text-foreground/70 mb-12 max-w-2xl mx-auto">
                     A selection of my projects, from my capstone to machine learning experiments. Explore the work and check out the code on GitHub!
                 </p>
 
@@ -24,7 +27,7 @@ export const ProjectsSection = () => {
                         >
                             <div className="h-48 overflow-hidden">
                                 <img
-                                    src={project.image}
+                                    src={project.thumbnail || project.image}
                                     alt={project.hero.alt}
                                     loading="lazy"
                                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
@@ -39,7 +42,7 @@ export const ProjectsSection = () => {
                                     {project.tags.map((tag, index) => (
                                         <span
                                             key={index}
-                                            className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
+                                            className="px-2 py-1 text-xs font-medium border rounded-full"
                                         >
                                             {tag}
                                         </span>
@@ -82,7 +85,7 @@ export const ProjectsSection = () => {
                 </div>
                 <div className="mt-12 text-center">
                     <a
-                        href="https://github.com/ec1s123"
+                        href={githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="cosmic-button w-fit flex items-center mx-auto gap-2"

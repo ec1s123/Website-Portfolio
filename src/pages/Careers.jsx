@@ -1,14 +1,12 @@
 import { EsportsCareer } from "../components/EsportsCareer";
-import { CareerEntry } from "../components/CareerEntry";
+import { TechCareer } from "../components/TechCareer";
 import { Link, useSearchParams } from "react-router-dom";
 import { ArrowUpRight, BriefcaseBusiness, Gamepad2 } from "lucide-react";
-import { careerSources, techCareer, newestFirst } from "../data/careers";
 
 export const Careers = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const track = searchParams.get("track") === "esports" ? "esports" : "tech";
     const isEsports = track === "esports";
-    const entries = newestFirst(techCareer);
 
     const selectTrack = (value) => {
         const next = new URLSearchParams(searchParams);
@@ -32,23 +30,10 @@ export const Careers = () => {
                         </button>
                     ))}
                 </div>
-                <p className="text-xs uppercase tracking-widest text-foreground/55">{isEsports ? "Teams & career highlights" : "Most recent first"}</p>
+                <p className="text-xs uppercase tracking-widest text-foreground/55">{isEsports ? "Teams & career highlights" : "Roles & career highlights"}</p>
             </div>
 
-            {isEsports ? <EsportsCareer /> : (
-                <section id="career-timeline" aria-labelledby="timeline-heading">
-                    <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-                        <h2 id="timeline-heading" className="text-3xl font-semibold tracking-tight">Engineering & technology</h2>
-                        <a href={careerSources.linkedin.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 py-2 text-sm text-foreground/65 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
-                            Full experience on LinkedIn <ArrowUpRight size={14} aria-hidden="true" />
-                        </a>
-                    </div>
-                    <p className="sr-only" role="status">Tech career selected. {entries.length} organizations, most recent first.</p>
-                    <ol className="divide-y">
-                        {entries.map((entry) => <CareerEntry key={entry.id} entry={entry} />)}
-                    </ol>
-                </section>
-            )}
+            {isEsports ? <EsportsCareer /> : <TechCareer />}
 
             {!isEsports && (
                 <div className="mt-16 flex flex-wrap items-center justify-between gap-5 border-t pt-8">

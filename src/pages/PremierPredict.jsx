@@ -3,7 +3,8 @@ import { ArrowUpRight, Github } from "lucide-react";
 
 const screenshots = [
     {
-        src: "/projects/premier-predict-results.png",
+        src: "/projects/premier-predict-results.webp",
+        preview: "/projects/premier-predict-results-1600.webp",
         title: "Match results & confidence",
         caption: "Explore completed fixtures, outcome probabilities, and prediction breakdowns.",
         alt: "Premier Predict results dashboard with confidence highlights and a table of scores, model picks, and prediction outcomes.",
@@ -11,7 +12,8 @@ const screenshots = [
         height: 1586,
     },
     {
-        src: "/projects/premier-predict-talking-points.png",
+        src: "/projects/premier-predict-talking-points.webp",
+        preview: "/projects/premier-predict-talking-points-1600.webp",
         title: "Team-performance insights",
         caption: "Turn actual versus expected points into club-level talking points.",
         alt: "Talking points dashboard comparing Sunderland and Tottenham's actual points with model expectations.",
@@ -19,7 +21,8 @@ const screenshots = [
         height: 1586,
     },
     {
-        src: "/projects/premier-predict-fixtures.png",
+        src: "/projects/premier-predict-fixtures.webp",
+        preview: "/projects/premier-predict-fixtures-1600.webp",
         title: "Upcoming fixture outlook",
         caption: "Browse fixtures and heuristic projections based on team profiles and form.",
         alt: "Upcoming fixtures dashboard with gameweek filters, match probabilities, and a Leeds versus Burnley outlook panel.",
@@ -61,7 +64,9 @@ const Screenshot = ({ screenshot, priority = false }) => (
             className="group block overflow-hidden rounded-md border border-foreground/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
         >
             <img
-                src={screenshot.src}
+                src={screenshot.preview}
+                srcSet={`${screenshot.preview} 1600w, ${screenshot.src} ${screenshot.width}w`}
+                sizes="(min-width: 1152px) 1072px, 100vw"
                 alt={screenshot.alt}
                 width={screenshot.width}
                 height={screenshot.height}

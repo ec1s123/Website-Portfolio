@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 47">
+  <defs>
+    <mask id="roof-gap" maskUnits="userSpaceOnUse" x="0" y="0" width="46" height="47">
+      <rect width="46" height="47" fill="#fff"/>
+      <path d="M25.2 18.8L-2 46" stroke="#000" stroke-width="11.5"/>
+    </mask>
+    <clipPath id="bounds"><rect x="2" width="42" height="47"/></clipPath>
+  </defs>
+  <g fill="none" stroke="#275579" stroke-width="4" clip-path="url(#bounds)">
+    <rect x="9" y="4.25" width="33" height="37" mask="url(#roof-gap)"/>
+    <path d="M-2 46L25.2 18.8L50 43.6"/>
+  </g>
+</svg>

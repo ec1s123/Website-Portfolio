@@ -34,7 +34,12 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=(), payment=()"
-        },
+        }
+      ]
+    },
+    {
+      "source": "/((?!assets/|projects/|logos/).*)",
+      "headers": [
         {
           "key": "Cache-Control",
           "value": "no-store, no-cache, must-revalidate"
@@ -50,11 +55,20 @@
       ]
     },
     {
-      "source": "/(crossdomain\\.xml|clientaccesspolicy\\.xml)",
+      "source": "/assets/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-store, no-cache, must-revalidate"
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(projects|logos)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
         }
       ]
     }

@@ -4,7 +4,7 @@ import { ArrowUpRight, Github } from "lucide-react";
 export const PremierPredictProject = () => (
     <article className="flex flex-col overflow-hidden rounded-lg bg-card text-left shadow-xs card-hover">
         <div className="relative h-48 overflow-hidden">
-            <img src="/projects/premier-predict-results.png" alt="Premier Predict match results and confidence dashboard" className="h-full w-full object-cover object-top" loading="lazy" />
+            <img src="/projects/premier-predict-results-800.webp" alt="Premier Predict match results and confidence dashboard" width="800" height="423" className="h-full w-full object-cover object-top" loading="lazy" />
             <span className="absolute bottom-3 left-3 rounded-full bg-card px-3 py-1 text-xs font-semibold text-primary shadow-sm">Capstone project</span>
         </div>
         <div className="flex flex-1 flex-col p-6">

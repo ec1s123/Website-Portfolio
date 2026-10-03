@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { socialProfiles } from "../data/socials";
+import { professionalProfiles, socialProfiles } from "../data/socials";
 
 const textLink = "inline-flex items-center gap-1.5 py-2 font-medium transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
 
@@ -19,7 +19,7 @@ export const AboutSection = () => (
                     <div className="order-1">
                         <h2 className="mb-4 text-xl font-semibold">From requirements to working software</h2>
                         <p className="leading-7 text-foreground/75">
-                            I’m Adam, a software developer with a background in professional esports
+                            I’m Adam, a software engineer with a background in professional esports
                             and an interest in data analytics, machine learning, and AI.
                         </p>
                         <p className="mt-4 leading-7 text-foreground/75">
@@ -61,7 +61,7 @@ export const AboutSection = () => (
                 </div>
 
                     <figure className="order-2 md:sticky md:top-28">
-                        <img src="/projects/image.png" alt="Adam Eccles in a Maryville esports jersey, looking back toward the camera" width="2048" height="2048" className="aspect-[4/5] w-full object-cover object-[50%_35%]" />
+                        <img src="/projects/about-portrait-1200.webp" srcSet="/projects/about-portrait-640.webp 640w, /projects/about-portrait-1200.webp 1200w" sizes="(min-width: 768px) 45vw, 100vw" alt="Adam Eccles in a Maryville esports jersey, looking back toward the camera" width="1200" height="1200" className="aspect-[4/5] w-full object-cover object-[50%_35%]" />
                         <figcaption className="mt-3 text-sm text-foreground/60">A chapter of my life in competitive esports.</figcaption>
                     </figure>
             </div>
@@ -70,7 +70,7 @@ export const AboutSection = () => (
                 <Link to="/contact" className={`${textLink} text-primary`}>
                     Get in touch <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
-                {socialProfiles.map(({ name, url }) => (
+                {[...professionalProfiles, ...socialProfiles].map(({ name, url }) => (
                     <a key={url} href={url} target="_blank" rel="noopener noreferrer" className={`${textLink} text-foreground/70`}>
                         {name}<ArrowUpRight size={14} aria-hidden="true" />
                     </a>
