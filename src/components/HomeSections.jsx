@@ -12,51 +12,48 @@ import { buttonOutline, buttonPrimary, cardLink, linkPrimary, shell } from "../l
 const wrapper = `${shell} text-left`;
 
 const allEntries = [...techCareer, ...esportsCareer];
-const logoGroups = [
-    {
-        title: "Software & AI",
-        columns: "md:grid-cols-4",
-        organizations: [
-            { id: "auxiliary-digital" },
-            { id: "automate-army" },
-            { id: "maryville-ai-engineer", name: "Maryville University" },
-            { id: "neuralseek" },
-        ],
-    },
-    {
-        title: "Pro esports",
-        organizations: [
-            { id: "liquid" },
-            { id: "100thieves" },
-            { id: "nip" },
-            { id: "fnatic" },
-            { id: "velocity" },
-        ],
-    },
-];
+const marqueeOrganizations = [
+    { id: "auxiliary-digital" },
+    { id: "automate-army" },
+    { id: "maryville-ai-engineer", name: "Maryville University" },
+    { id: "neuralseek" },
+    { id: "liquid" },
+    { id: "100thieves" },
+    { id: "nip" },
+    { id: "fnatic" },
+    { id: "velocity" },
+].map(({ id, name }) => {
+    const entry = allEntries.find((item) => item.id === id);
+    return { entry, name: name || entry.organization };
+});
 
+const MarqueeList = ({ hidden = false }) => (
+    <ul aria-hidden={hidden || undefined} aria-label={hidden ? undefined : "Companies and teams"} className={`flex shrink-0 items-center gap-x-10 gap-y-4 pr-10 motion-reduce:w-full motion-reduce:shrink motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:pr-0 sm:gap-x-14 sm:pr-14 ${hidden ? "motion-reduce:hidden" : ""}`}>
+        {marqueeOrganizations.map(({ entry, name }) => (
+            <li key={entry.id} className="flex items-center gap-3">
+                <CareerLogo entry={entry} compact />
+                <span className="whitespace-nowrap text-sm font-medium text-muted">{name}</span>
+            </li>
+        ))}
+    </ul>
+);
+
+// A slim, continuously looping row of every company and team, full width. On wide screens the
+// label sits at the left edge and an equal-width spacer balances the right, so the scrolling
+// window stays centered on the page. With reduced motion it becomes a static list.
 export const LogoStrip = () => (
-    <section aria-labelledby="organizations-heading" className="border-y bg-card/40 py-10">
-        <div className={wrapper}>
-            <h2 id="organizations-heading" className="sr-only">Teams and companies</h2>
-            <div className="grid gap-8 md:grid-cols-[4fr_5fr] md:gap-12">
-                {logoGroups.map(({ title, columns = "", organizations }) => (
-                    <div key={title}>
-                        <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-subtle">{title}</p>
-                        <ul className={`grid grid-cols-5 gap-x-2 gap-y-5 sm:gap-x-4 ${columns}`}>
-                            {organizations.map(({ id, name }) => {
-                                const entry = allEntries.find((item) => item.id === id);
-                                return (
-                                    <li key={id} className="flex min-w-0 flex-col items-center gap-2 text-center">
-                                        <CareerLogo entry={entry} />
-                                        <span className="wrap-break-word text-[11px] leading-snug text-muted sm:text-xs">{name || entry.organization}</span>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </div>
-                ))}
+    <section aria-labelledby="organizations-heading" className="border-y py-5">
+        <div className="flex items-center">
+            <h2 id="organizations-heading" className="sr-only xl:not-sr-only xl:w-72 xl:shrink-0 xl:whitespace-nowrap xl:pl-10 xl:text-left xl:text-xs xl:font-semibold xl:uppercase xl:tracking-[0.2em] xl:text-subtle">
+                Worked &amp; competed with
+            </h2>
+            <div className="min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)] motion-reduce:px-6 motion-reduce:[mask-image:none]">
+                <div className="flex w-max animate-marquee motion-reduce:w-full motion-reduce:animate-none">
+                    <MarqueeList />
+                    <MarqueeList hidden />
+                </div>
             </div>
+            <div aria-hidden="true" className="hidden xl:block xl:w-72 xl:shrink-0" />
         </div>
     </section>
 );

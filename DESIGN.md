@@ -12,6 +12,9 @@ class strings. If something new is needed, add it here and in `src/components/ui
   page title, and hairlines. Never use it for long passages of text.
 - **Every role, project, and article gets its own entry.** Don't merge items to save space; the
   detail is the point.
+- **Motion is optional.** Anything that moves on its own (the Home logo marquee) stops entirely
+  under `prefers-reduced-motion`. The marquee intentionally has no pause control or hover pause
+  (Adam's call: it should flow continuously).
 - **Accessible by default.** Text meets WCAG AA in both themes, every interactive element shows
   `focusRing`, and external links say "(opens in a new tab)" to screen readers.
 
