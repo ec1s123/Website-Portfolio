@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, FileText, Mail } from "lucide-react";
+import { ArrowUpRight, FileText, Send } from "lucide-react";
 import { CareerLogo } from "./CareerLogo";
+import { ProjectCard } from "./ProjectCard";
 import { esportsCareer, esportsPress, formatCareerDate, newestFirst, techCareer } from "../data/careers";
-import { projectCaseStudies } from "../data/projectCaseStudies";
-import { email, professionalProfiles, resumeUrl } from "../data/socials";
+import { findProject } from "../data/projects";
+import { professionalProfiles, resumeUrl } from "../data/socials";
+import { cardLink, focusRing } from "../lib/styles";
 
 const wrapper = "mx-auto max-w-6xl px-6 text-left sm:px-10";
-const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
-// Stretches a link over its card so the whole card is clickable.
-const cardLink = "after:absolute after:inset-0 after:rounded-md focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-primary";
 
 const SectionHeader = ({ id, eyebrow, title, link }) => (
     <div className="mb-10 flex flex-wrap items-end justify-between gap-4 md:mb-12">
@@ -62,7 +61,7 @@ export const LogoStrip = () => (
                                 return (
                                     <li key={id} className="flex min-w-0 flex-col items-center gap-2 text-center">
                                         <CareerLogo entry={entry} />
-                                        <span className="break-words text-[11px] leading-snug text-foreground/75 sm:text-xs">{name || entry.organization}</span>
+                                        <span className="wrap-break-word text-[11px] leading-snug text-foreground/75 sm:text-xs">{name || entry.organization}</span>
                                     </li>
                                 );
                             })}
@@ -74,51 +73,15 @@ export const LogoStrip = () => (
     </section>
 );
 
-const caseStudy = (slug) => {
-    const project = projectCaseStudies.find((item) => item.slug === slug);
-    return {
-        title: project.title,
-        path: `/projects/${slug}`,
-        image: { src: project.thumbnail || project.image, width: project.hero.width, height: project.hero.height },
-        description: project.description,
-        tags: project.tags,
-    };
-};
-
-const featuredProjects = [
-    {
-        title: "Premier Predict",
-        label: "Capstone",
-        path: "/projects/premier-predict",
-        image: { src: "/projects/premier-predict-results-800.webp", width: 800, height: 423 },
-        description: "A Premier League analytics app: a custom NumPy classifier trained on 8,600+ matches, explored through a React dashboard. Beat the baseline by 2.4 percentage points on held-out matches.",
-        tags: ["React", "Python", "NumPy", "Docker"],
-    },
-    caseStudy("siamese-face-verification"),
-    caseStudy("phishing-detection"),
-];
+const featuredProjects = ["premier-predict", "siamese-face-verification", "phishing-detection"].map(findProject);
 
 export const FeaturedWork = () => (
     <section aria-labelledby="work-heading" className="py-20 md:py-28">
         <div className={wrapper}>
             <SectionHeader id="work-heading" eyebrow="Selected work" title="Things I’ve built." link={{ to: "/projects", label: "All projects" }} />
             <ul className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-                {featuredProjects.map(({ title, label, path, image, description, tags }) => (
-                    <li key={path}>
-                        <article className="group relative flex h-full flex-col">
-                            <div className="aspect-video overflow-hidden rounded-md border border-foreground/10 bg-white">
-                                <img src={image.src} alt="" width={image.width} height={image.height} loading="lazy" decoding="async" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none" />
-                            </div>
-                            <div className="mt-5 flex items-center gap-3">
-                                <h3 className="text-xl font-semibold tracking-tight transition-colors group-hover:text-primary">
-                                    <Link to={path} className={cardLink}>{title}</Link>
-                                </h3>
-                                {label && <span className="rounded-full border border-primary/40 px-2.5 py-0.5 text-xs font-medium text-primary">{label}</span>}
-                            </div>
-                            <p className="mt-2 text-sm leading-relaxed text-foreground/70">{description}</p>
-                            <p className="mt-auto pt-4 text-xs font-medium text-foreground/60">{tags.join(" · ")}</p>
-                        </article>
-                    </li>
+                {featuredProjects.map((project) => (
+                    <li key={project.slug}><ProjectCard project={project} /></li>
                 ))}
             </ul>
         </div>
@@ -220,9 +183,9 @@ export const ContactCta = () => (
                 Whether it’s a role, a project, or a question about esports, my inbox is open.
             </p>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-                <a href={`mailto:${email}`} className={`cosmic-button inline-flex min-h-12 items-center gap-2 ${focusRing}`}>
-                    <Mail size={17} aria-hidden="true" /> Email me
-                </a>
+                <Link to="/contact" className={`cosmic-button inline-flex min-h-12 items-center gap-2 ${focusRing}`}>
+                    <Send size={17} aria-hidden="true" /> Send a message
+                </Link>
                 <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className={outlineButton}>
                     <FileText size={16} aria-hidden="true" /> Résumé <span className="sr-only">(PDF, opens in a new tab)</span>
                 </a>

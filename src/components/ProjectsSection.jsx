@@ -1,99 +1,69 @@
 import { Link } from "react-router-dom";
-import { projectCaseStudies } from "../data/projectCaseStudies";
-import { ArrowRight, ArrowUpRight, ExternalLink, Github } from "lucide-react";
-import { PremierPredictProject } from "./PremierPredictProject";
+import { ArrowUpRight, Github } from "lucide-react";
+import { ProjectCard } from "./ProjectCard";
+import { projects } from "../data/projects";
 import { professionalProfiles } from "../data/socials";
+import { cardLink, eyebrow, focusRing } from "../lib/styles";
 
 const githubUrl = professionalProfiles.find((profile) => profile.name === "GitHub").url;
+const [featured, ...moreProjects] = projects;
 
-export const ProjectsSection = () => {
-    return (
-        <section id="projects" className="py-24 px-4 relative">
-            <div className="container mx-auto max-w-5xl">
-                <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-                    Featured <span className="text-primary">Projects</span>
-                </h1>
+export const ProjectsSection = () => (
+    <article className="mx-auto max-w-6xl px-6 pb-20 pt-16 text-left sm:px-10 md:pb-28 md:pt-24">
+        <header>
+            <p className={`mb-5 ${eyebrow}`}>Adam Eccles / Projects</p>
+            <h1 className="max-w-4xl text-5xl font-semibold tracking-tight sm:text-7xl lg:text-8xl">Things I’ve built<span className="text-primary">.</span></h1>
+            <p className="mt-8 max-w-2xl text-xl leading-relaxed text-foreground/70">
+                From a full-stack capstone to machine learning experiments. Each case study covers how
+                the project works, what I measured, and the limits of the results.
+            </p>
+        </header>
 
-                <p className="text-center text-foreground/70 mb-12 max-w-2xl mx-auto">
-                    A selection of my projects, from my capstone to machine learning experiments. Explore the work and check out the code on GitHub!
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <PremierPredictProject />
-                    {projectCaseStudies.map((project) => (
-                        <div
-                            key={project.slug}
-                            className="flex flex-col bg-card rounded-lg overflow-hidden text-left shadow-xs card-hover"
-                        >
-                            <div className="h-48 overflow-hidden">
-                                <img
-                                    src={project.thumbnail || project.image}
-                                    alt={project.hero.alt}
-                                    loading="lazy"
-                                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                                />
-                            </div>
-
-                            <div className="flex flex-1 flex-col p-6">
-                                <h2 className="text-xl font-semibold mb-1"><Link to={`/projects/${project.slug}`} className="hover:text-primary">{project.title}</Link></h2>
-                                <p className="text-foreground/75 text-sm leading-relaxed mb-4 py-1">{project.description}</p>
-
-                                <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.tags.map((tag, index) => (
-                                        <span
-                                            key={index}
-                                            className="px-2 py-1 text-xs font-medium border rounded-full"
-                                        >
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-
-                                <div className="mt-auto pt-2 flex flex-wrap gap-4 justify-between items-center">
-                                    <Link to={`/projects/${project.slug}`} className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">
-                                        View project details <ArrowUpRight size={16} aria-hidden="true" />
-                                    </Link>
-                                    <div className="flex space-x-3">
-                                        {project.demoUrl && (
-                                            <a
-                                                href={project.demoUrl}
-                                                aria-label={`View ${project.title} project post`}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                                            >
-                                                <ExternalLink size={20} />
-                                            </a>
-                                        )}
-
-                                        {project.githubLink && (
-                                            <a
-                                                href={project.githubLink}
-                                                aria-label={`${project.title} source code on GitHub`}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                                            >
-                                                <Github size={20} />
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+        <section aria-labelledby="featured-heading" className="mt-14 border-t pt-10 md:mt-20 md:pt-14">
+            <article className="group relative grid items-center gap-8 lg:grid-cols-[3fr_2fr] lg:gap-12">
+                <div className="overflow-hidden rounded-md border border-foreground/10 bg-white">
+                    <img src={featured.image.src} srcSet={featured.image.srcSet} sizes="(min-width: 1024px) 40rem, 100vw" alt="" width={featured.image.width} height={featured.image.height} decoding="async" className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none" />
                 </div>
-                <div className="mt-12 text-center">
-                    <a
-                        href={githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="cosmic-button w-fit flex items-center mx-auto gap-2"
-                    >
-                        Check Out My Github<ArrowRight size={16} />
-                    </a>
+                <div>
+                    <p className={eyebrow}>{featured.label} · Featured</p>
+                    <h2 id="featured-heading" className="mt-3 text-3xl font-semibold tracking-tight transition-colors group-hover:text-primary md:text-4xl">
+                        <Link to={featured.path} className={cardLink}>{featured.title}</Link>
+                    </h2>
+                    <p className="mt-4 leading-relaxed text-foreground/75">{featured.description}</p>
+                    <dl className="mt-6 grid grid-cols-3 gap-4 border-y py-5">
+                        {featured.highlights.map(([value, label], index) => (
+                            <div key={label} className="flex flex-col-reverse justify-end gap-1.5">
+                                <dt className="text-xs leading-snug text-foreground/60">{label}</dt>
+                                <dd className={`text-2xl font-semibold tracking-tight ${index === 0 ? "text-primary" : ""}`}>{value}</dd>
+                            </div>
+                        ))}
+                    </dl>
+                    <p className="mt-5 text-xs font-medium text-foreground/60">{featured.tags.join(" · ")}</p>
+                    <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium">
+                        <span aria-hidden="true" className="inline-flex items-center gap-1 text-primary">Read the case study <ArrowUpRight size={16} /></span>
+                        <a href={featured.githubLink} target="_blank" rel="noopener noreferrer" className={`relative z-10 inline-flex items-center gap-1.5 rounded-sm py-1 text-foreground/70 transition-colors hover:text-primary ${focusRing}`}>
+                            <Github size={16} aria-hidden="true" /> Source code <span className="sr-only">for {featured.title} (opens in a new tab)</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </article>
         </section>
-    );
-};
+
+        <section aria-labelledby="more-heading" className="mt-16 border-t pt-10 md:mt-24 md:pt-14">
+            <p className={`mb-3 ${eyebrow}`}>Machine learning</p>
+            <h2 id="more-heading" className="mb-10 text-3xl font-semibold tracking-tight md:mb-12 md:text-4xl">More projects</h2>
+            <ul className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                {moreProjects.map((project) => (
+                    <li key={project.slug}><ProjectCard project={project} detailed /></li>
+                ))}
+            </ul>
+        </section>
+
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-5 border-t pt-8 md:mt-24">
+            <p className="text-sm text-foreground/65">More experiments and coursework live on GitHub.</p>
+            <a href={githubUrl} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 rounded-sm text-sm font-medium text-primary hover:underline ${focusRing}`}>
+                <Github size={16} aria-hidden="true" /> github.com/ec1s123 <ArrowUpRight size={16} aria-hidden="true" /><span className="sr-only">(opens in a new tab)</span>
+            </a>
+        </div>
+    </article>
+);

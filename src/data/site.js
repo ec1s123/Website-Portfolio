@@ -1,6 +1,6 @@
 import { projectCaseStudies } from "./projectCaseStudies.js";
 
-export const siteUrl = "https://www.ec1s.com";
+export const siteUrl = "https://ec1s.com";
 
 // Also the route list for the generated sitemap (see vite.config.js).
 export const pageTitles = {

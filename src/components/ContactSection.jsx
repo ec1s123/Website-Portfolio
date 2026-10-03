@@ -1,58 +1,54 @@
-import { FileText, Github, LinkedinIcon, Mail, MapPin } from "lucide-react";
-import { email, professionalProfiles, resumeUrl } from "../data/socials";
+import { ArrowUpRight, FileText, MapPin } from "lucide-react";
+import { ContactForm } from "./ContactForm";
+import { professionalProfiles, resumeUrl, socialProfiles } from "../data/socials";
+import { eyebrow, focusRing } from "../lib/styles";
 
-const profileUrl = (name) => professionalProfiles.find((profile) => profile.name === name).url;
+const profiles = [...professionalProfiles, ...socialProfiles];
+const outlineButton = `inline-flex min-h-12 items-center gap-2 rounded-full border bg-background/60 px-6 py-2 text-sm font-medium transition-colors hover:border-primary/50 hover:bg-primary/5 ${focusRing}`;
 
-const channels = [
-    { title: "Email", icon: Mail, label: <>{email.split("@")[0]}<wbr />@{email.split("@")[1]}</>, href: `mailto:${email}` },
-    { title: "LinkedIn", icon: LinkedinIcon, label: "in/adam-eccles", href: profileUrl("LinkedIn") },
-    { title: "GitHub", icon: Github, label: "github.com/ec1s123", href: profileUrl("GitHub") },
-    { title: "Location", icon: MapPin, label: "St. Louis, Missouri, USA" },
-];
-
-export const ContactSection = () => {
-    return (
-    <section id="contact" className="py-24 px-4 relative">
-        <div className="container mx-auto max-w-5xl">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-                Get in <span className="text-primary"> Touch</span>
-            </h1>
-
-            <p className="text-center text-foreground/70 mb-12 max-w-2xl mx-auto">
-                I'm always open to new opportunities and collaborations. Whether you have a question, want to work together, or just want to say hi, feel free to reach out!
+export const ContactSection = () => (
+    <article className="mx-auto max-w-6xl px-6 pb-20 pt-16 text-left sm:px-10 md:pb-28 md:pt-24">
+        <header>
+            <p className={`mb-5 ${eyebrow}`}>Adam Eccles / Contact</p>
+            <h1 className="max-w-4xl text-5xl font-semibold tracking-tight sm:text-7xl lg:text-8xl">Let’s talk<span className="text-primary">.</span></h1>
+            <p className="mt-8 max-w-2xl text-xl leading-relaxed text-foreground/70">
+                Whether it’s a role, a project, or a question about esports, send a message below
+                and it’ll land straight in my inbox.
             </p>
+        </header>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-                {channels.map(({ title, icon, label, href }) => {
-                    const Icon = icon;
-                    return (
-                    <div key={title} className="flex flex-col items-center text-center gap-3">
-                        <div className="h-12 w-12 flex items-center justify-center p-3 rounded-full bg-primary/10">
-                            <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
-                        </div>
-                        <h2 className="text-xl font-semibold">{title}</h2>
-                        {href ? (
-                            <a
-                            href={href}
-                            {...(href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
-                            className="text-primary hover:underline transition-colors duration-300 break-words"
-                            >
-                            {label}
-                            </a>
-                        ) : (
-                            <p className="text-primary">{label}</p>
-                        )}
-                    </div>
-                    );
-                })}
-            </div>
+        <div className="mt-14 grid gap-14 border-t pt-10 md:mt-20 md:grid-cols-[3fr_2fr] md:gap-16 md:pt-14">
+            <section aria-labelledby="message-heading">
+                <h2 id="message-heading" className={`mb-6 ${eyebrow}`}>Send a message</h2>
+                <ContactForm />
+            </section>
 
-            <div className="mt-14 text-center">
-                <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="cosmic-button inline-flex min-h-12 items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
-                    <FileText size={17} aria-hidden="true" /> View my résumé <span className="sr-only">(PDF, opens in a new tab)</span>
-                </a>
+            <div className="space-y-12">
+                <section aria-labelledby="profiles-heading">
+                    <h2 id="profiles-heading" className={eyebrow}>Elsewhere</h2>
+                    <ul className="mt-4 divide-y border-y">
+                        {profiles.map(({ name, handle, url }) => (
+                            <li key={url}>
+                                <a href={url} target="_blank" rel="noopener noreferrer" className={`group flex items-center justify-between gap-4 py-4 ${focusRing}`}>
+                                    <span className="font-medium transition-colors group-hover:text-primary">{name}</span>
+                                    <span className="inline-flex items-center gap-1.5 text-sm text-foreground/60 transition-colors group-hover:text-primary">
+                                        {handle} <ArrowUpRight size={14} aria-hidden="true" />
+                                    </span>
+                                    <span className="sr-only">(opens in a new tab)</span>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+                <div className="space-y-6">
+                    <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className={outlineButton}>
+                        <FileText size={16} aria-hidden="true" /> View my résumé <span className="sr-only">(PDF, opens in a new tab)</span>
+                    </a>
+                    <p className="flex items-center gap-2 text-sm text-foreground/65">
+                        <MapPin size={16} className="text-primary" aria-hidden="true" /> Based in St. Louis, Missouri, USA
+                    </p>
+                </div>
             </div>
         </div>
-       </section>
-    );
-};
+    </article>
+);
