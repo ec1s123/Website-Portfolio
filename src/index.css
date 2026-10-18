@@ -224,6 +224,15 @@
   .starfield .meteor { display: none; }
 }
 
+/* Space mode: keep chrome readable over the GPU backdrop without boxing the page. */
+html.space-mode body {
+  background-color: #05080f;
+}
+
+html.space-mode header {
+  background-color: hsl(var(--background) / 0.72);
+}
+
 #root{
   max-width: 100%;
   margin: 0 auto;
