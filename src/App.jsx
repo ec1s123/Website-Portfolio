@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SiteLayout } from "./components/SiteLayout";
+import { SpaceModeProvider } from "./components/SpaceModeProvider";
 import { Careers } from "./pages/Careers";
 import { Home } from "./pages/Home";
 import { AboutSection } from "./components/AboutSection";
@@ -13,22 +14,24 @@ import { NotFound } from "./pages/NotFound";
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route element={<SiteLayout />}>
-                    <Route index element={<Home />} />
-                    <Route path="about" element={<AboutSection />} />
-                    <Route path="careers" element={<Careers />} />
-                    <Route path="skills" element={<SkillsSection />} />
-                    <Route path="projects" element={<ProjectsSection />} />
-                    <Route path="projects/premier-predict" element={<PremierPredict />} />
-                    <Route path="projects/conversation-intent-review" element={<ConversationIntent />} />
-                    <Route path="projects/:slug" element={<ProjectCaseStudy />} />
-                    <Route path="contact" element={<ContactSection />} />
-                    <Route path="*" element={<NotFound />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <SpaceModeProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<SiteLayout />}>
+                        <Route index element={<Home />} />
+                        <Route path="about" element={<AboutSection />} />
+                        <Route path="careers" element={<Careers />} />
+                        <Route path="skills" element={<SkillsSection />} />
+                        <Route path="projects" element={<ProjectsSection />} />
+                        <Route path="projects/premier-predict" element={<PremierPredict />} />
+                        <Route path="projects/conversation-intent-review" element={<ConversationIntent />} />
+                        <Route path="projects/:slug" element={<ProjectCaseStudy />} />
+                        <Route path="contact" element={<ContactSection />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </SpaceModeProvider>
     );
 }
 

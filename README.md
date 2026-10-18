@@ -70,7 +70,7 @@ public/
   logos/                Organization logos; provenance in logos/SOURCES.md
   projects/             Project screenshots and charts (WebP for large images)
   robots.txt            Points crawlers to the sitemap
-  theme-init.js         Applies the saved light/dark theme before React loads
+  theme-init.js         Applies the saved light/dark theme (and space mode) before React loads
 src/
   App.jsx               Route definitions
   index.css             Theme colors, animations, starfield and utility classes
@@ -78,7 +78,7 @@ src/
   components/           Page sections (navbar, footer, careers, contact form…)
     ui/                 Shared design-system components (see DESIGN.md)
   data/                 Site content — edit these to update the site (see below)
-  lib/                  Shared helpers: styles, contact validation, starfield, cn()
+  lib/                  Shared helpers: styles, contact validation, starfield, spaceScene, cn()
 DESIGN.md               Design system: colors, type scale, layout, shared components
 CLAUDE.md               Working rules for AI coding assistants
 index.html              Meta description, Open Graph/Twitter tags, structured data

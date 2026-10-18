@@ -12,17 +12,21 @@ class strings. If something new is needed, add it here and in `src/components/ui
   page title, and hairlines. Never use it for long passages of text.
 - **Every role, project, and article gets its own entry.** Don't merge items to save space; the
   detail is the point.
-- **Motion is optional.** Anything that moves on its own (the Home logo marquee) stops entirely
-  under `prefers-reduced-motion`. The marquee intentionally has no pause control or hover pause
-  (Adam's call: it should flow continuously).
+- **Motion is optional.** Anything that moves on its own (the Home logo marquee, the opt-in space
+  backdrop) stops entirely under `prefers-reduced-motion`. The marquee intentionally has no pause
+  control or hover pause (Adam's call: it should flow continuously).
+- **Space backdrop is opt-in.** The default backdrop is the lightweight CSS starfield. The Orbit
+  control in the navbar swaps in a WebGL2 procedural space scene (nebula, planet, stars, gentle
+  camera drift). It persists in `localStorage` as `spaceMode`, forces dark theme tokens while
+  active (light text on a dark scene), and falls back to the CSS starfield if WebGL2 is missing.
 - **Accessible by default.** Text meets WCAG AA in both themes, every interactive element shows
   `focusRing`, and external links say "(opens in a new tab)" to screen readers.
 
 ## Brand
 
-- **No logo in the navbar.** Page links start at the left edge; profiles, Résumé, and the theme
-  toggle sit on the right. The name is carried by each page's eyebrow ("Adam Eccles / Career") and
-  the Home hero. On phones, "Menu" takes the left slot.
+- **No logo in the navbar.** Page links start at the left edge; profiles, Résumé, the space
+  toggle, and the theme toggle sit on the right. The name is carried by each page's eyebrow
+  ("Adam Eccles / Career") and the Home hero. On phones, "Menu" takes the left slot.
 - **Favicon:** `public/icon.png`.
 
 ## Color
@@ -101,6 +105,10 @@ Shared React components live in `src/components/ui/`, shared class strings in `s
 | `linkQuiet` | `lib/styles` | A secondary or external reference ("Full experience on LinkedIn") |
 | `cardLink` | `lib/styles` | Makes a whole card clickable; other links inside need `relative z-10` |
 | `focusRing` | `lib/styles` | Focus style for any custom interactive element |
+| `SpaceToggle` | `SpaceToggle.jsx` | Navbar Orbit control that opts into the WebGL space backdrop |
+| `SpaceModeProvider` | `SpaceModeProvider.jsx` | Persists `spaceMode` in `localStorage` and exposes it to the layout |
+| `SpaceBackground` | `SpaceBackground.jsx` | Full-viewport WebGL2 space scene; falls back to `StarBackground` |
+| `createSpaceScene` | `lib/spaceScene.js` | WebGL2 renderer used by `SpaceBackground` |
 
 ### When to use what
 

@@ -4,6 +4,8 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { StarBackground } from "./StarBackground";
+import { SpaceBackground } from "./SpaceBackground";
+import { useSpaceMode } from "../hooks/useSpaceMode";
 
 const setCanonical = (pathname) => {
     let link = document.querySelector('link[rel="canonical"]');
@@ -19,6 +21,8 @@ const setCanonical = (pathname) => {
 export const SiteLayout = () => {
     const { pathname, hash } = useLocation();
     const mainRef = useRef(null);
+    const { enabled: spaceOn } = useSpaceMode();
+    const subdued = pathname === "/about";
     // Preserve links to the former single-page sections.
     const legacyPath = pathname === "/" && ["#home", "#about", "#skills", "#projects", "#contact"].includes(hash)
         ? (hash === "#home" ? "/" : `/${hash.slice(1)}`)
@@ -34,8 +38,8 @@ export const SiteLayout = () => {
     if (legacyPath) return <Navigate to={legacyPath} replace />;
 
     return (
-        <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
-            <StarBackground subdued={pathname === "/about"} />
+        <div className={`relative min-h-screen overflow-x-hidden text-foreground ${spaceOn ? "bg-transparent" : "bg-background"}`}>
+            {spaceOn ? <SpaceBackground subdued={subdued} /> : <StarBackground subdued={subdued} />}
             <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-card focus:p-3">Skip to content</a>
             <Navbar key={pathname} />
             <div className="relative z-10 flex min-h-screen flex-col pt-20">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FileText } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { SpaceToggle } from "./SpaceToggle";
 import { ProfileLinks } from "./ProfileLinks";
 import { resumeUrl } from "../data/socials";
 import { focusRing, shell } from "../lib/styles";
@@ -55,6 +56,7 @@ export const Navbar = () => {
                             <FileText size={15} aria-hidden="true" /> Résumé <span className="sr-only">(PDF, opens in a new tab)</span>
                         </a>
                     </div>
+                    <SpaceToggle />
                     <ThemeToggle />
                 </div>
                 {isMenuOpen && (
